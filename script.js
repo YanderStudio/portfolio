@@ -36,3 +36,29 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
+// --- Gestion du Thème Frutiger Aero ---
+const themeSwitcher = document.getElementById('theme-switcher');
+const body = document.body;
+const THEME_KEY = 'portfolio-theme';
+
+// Vérifier s'il y a un thème sauvegardé ou appliquer le thème par défaut
+const savedTheme = localStorage.getItem(THEME_KEY);
+if (savedTheme === 'frutiger') {
+    body.classList.add('theme-frutiger');
+}
+
+// Gérer le clic sur le bouton
+if (themeSwitcher) {
+    themeSwitcher.addEventListener('click', () => {
+        // Alterne la classe sur le body
+        body.classList.toggle('theme-frutiger');
+        
+        // Sauvegarde le choix
+        if (body.classList.contains('theme-frutiger')) {
+            localStorage.setItem(THEME_KEY, 'frutiger');
+        } else {
+            localStorage.setItem(THEME_KEY, 'default');
+        }
+    });
+}
