@@ -22,22 +22,28 @@
             <a href="index.html#contact" class="nav-btn">Contact</a>
         </nav>
         <div class="header-right">
-            <button id="theme-switcher" class="social-icon" style="border: none; cursor: pointer; background: transparent; padding: 0;">
-                <img src="img/bento.svg" alt="Thème" style="background-color: var(--primary-block-bg); border-radius: var(--rad5); padding: 12px; height: 22px; width: 22px;">
-                <!-- NB : Idéalement, remplace l'image par une balise <i> Boxicons ou un SVG de goutte d'eau -->
-            </button>
+            <div class="theme-dropdown-container">
+                <button id="theme-dropdown-btn" class="social-icon" title="Changer de thème" style="border: none; cursor: pointer; background: transparent; padding: 0;">
+                    <img src="img/karde_me_logo.jpg" alt="Thèmes" style="background-color: var(--bg-panel); border-radius: var(--rad-sm); padding: 12px; height: 22px; width: 22px;">
+                </button>
+                <div id="theme-dropdown-menu" class="theme-dropdown-menu">
+                    <button class="theme-option" data-theme="default">💜 Défaut</button>
+                    <button class="theme-option" data-theme="frutiger">🐬 Frutiger Aero</button>
+                </div>
+            </div>
             <a href="https://www.linkedin.com/in/nicolas-richard-a-o/" target="_blank" class="social-icon">
                 <img src="img/Linkedin.svg" alt="LinkedIn">
             </a>
-            <a href="https://bento.me/yander" target="_blank" class="social-icon">
-                <img src="img/bento.svg" alt="Bento.me">
+            <a href="https://www.karde.me/yander" target="_blank" class="karde-logo">
+                <img src="img/karde_me_logo.jpg" alt="Karde.me">
             </a>
         </div>
     </header>
 
     <main>
-        <section class="container box">
-            <div class="win7-topbar">
+        <!-- NOUVEAU COMPOSANT PANEL BEM ICI -->
+        <section class="container panel">
+            <div class="panel__topbar">
                 <div class="win7-title">
                     <img src="img/logo.png" alt="icon">
                     <span>A_Propos.exe</span>
@@ -49,7 +55,7 @@
                 </div>
             </div>
 
-            <div class="win7-inner">
+            <div class="panel__content">
                 <div class="col1">
                     <div>
                         <img src="img/Motif_x3.svg" alt="motif déco" class="svg-up1 svg">
@@ -78,321 +84,22 @@
             </div>
         </section>
 
-
         <section id="projects" class="arrow">
             <a href="#projects" class="scroll-down-arrow">
                 <i class='bx bx-down-arrow-alt'></i>
             </a>
         </section>
 
-
         <section class="container">
-            <h2 class="section-title">PROJETS</h2>
-            <div class="grid-projects">
-                <!-- Projet 0 -->
-                <a href="project-0.html" class="card-project-grid">
-                    <div class="win7-topbar">
-                        <div class="win7-title">
-                            <img src="img/logo.png" alt="icon">
-                            <span>Hell_au_Fresh.exe</span>
-                        </div>
-                        <div class="win7-controls">
-                            <div class="ctrl-btn ctrl-min"><i class='bx bx-minus'></i></div>
-                            <div class="ctrl-btn ctrl-max"><i class='bx bx-rectangle'></i></div>
-                            <div class="ctrl-btn ctrl-close"><i class='bx bx-x'></i></div>
-                        </div>
-                    </div>
-                    <div class="win7-inner">
-                        <div class="image-project-grid"><img src="img/Hell_au_fresh/Hell_au_Fresh.png" alt="Image du site Hell au Fresh"></div>
-                        <div class="detail-project-grid">
-                            <h3 class="title-project-grid">Hell au Fresh</h3>
-                            <p class="desc-project-grid">Création d'un site fictif de commande de produits de première nécessité pour étudiants.</p>
-                            <p class="date-project-grid">06/06/2024</p>
-                        </div>
-                    </div>
-                </a>
+            <h2 class="section-title">PROJETS PRINCIPAUX (web)</h2>
+            <div id="grid-main-projects" class="grid-projects"></div>
+        </section>
 
-                <!-- Projet 1 -->
-                <a href="project-1.html" class="card-project-grid">
-                    <div class="win7-topbar">
-                        <div class="win7-title">
-                            <img src="img/logo.png" alt="icon">
-                            <span>Viseur_Arena.exe</span>
-                        </div>
-                        <div class="win7-controls">
-                            <div class="ctrl-btn ctrl-min"><i class='bx bx-minus'></i></div>
-                            <div class="ctrl-btn ctrl-max"><i class='bx bx-rectangle'></i></div>
-                            <div class="ctrl-btn ctrl-close"><i class='bx bx-x'></i></div>
-                        </div>
-                    </div>
-                    <div class="win7-inner">
-                        <div class="image-project-grid"><img src="img/Viseur_Arena/landing_page.png" alt="Page d'accueil du site fictif Viseur Arena"></div>
-                        <div class="detail-project-grid">
-                            <h3 class="title-project-grid">Viseur Arena</h3>
-                            <p class="desc-project-grid">Création et branding d'un site fictif d'une salle de concerts.</p>
-                            <p class="date-project-grid">25/09/2024</p>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Projet 2 -->
-                <a href="project-2.html" class="card-project-grid">
-                    <div class="win7-topbar">
-                        <div class="win7-title">
-                            <img src="img/logo.png" alt="icon">
-                            <span>Mate_Painting.exe</span>
-                        </div>
-                        <div class="win7-controls">
-                            <div class="ctrl-btn ctrl-min"><i class='bx bx-minus'></i></div>
-                            <div class="ctrl-btn ctrl-max"><i class='bx bx-rectangle'></i></div>
-                            <div class="ctrl-btn ctrl-close"><i class='bx bx-x'></i></div>
-                        </div>
-                    </div>
-                    <div class="win7-inner">
-                        <div class="image-project-grid"><img src="img/Mate_painting/SAE_103.png" alt="Image du Mate Painting"></div>
-                        <div class="detail-project-grid">
-                            <h3 class="title-project-grid">Mate Painting</h3>
-                            <p class="desc-project-grid">Création d'un Mate Painting sur deux thèmes imposés (Polaroid & Pop Art).</p>
-                            <p class="date-project-grid">08/11/2024</p>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Projet 3 -->
-                <a href="project-3.html" class="card-project-grid">
-                    <div class="win7-topbar">
-                        <div class="win7-title">
-                            <img src="img/logo.png" alt="icon">
-                            <span>Booksta.exe</span>
-                        </div>
-                        <div class="win7-controls">
-                            <div class="ctrl-btn ctrl-min"><i class='bx bx-minus'></i></div>
-                            <div class="ctrl-btn ctrl-max"><i class='bx bx-rectangle'></i></div>
-                            <div class="ctrl-btn ctrl-close"><i class='bx bx-x'></i></div>
-                        </div>
-                    </div>
-                    <div class="win7-inner">
-                        <div class="image-project-grid"><img src="img/booksta/booksta_caroussel.jpg" alt="Photo utilisé pour le Booksta"></div>
-                        <div class="detail-project-grid">
-                            <h3 class="title-project-grid">Booksta</h3>
-                            <p class="desc-project-grid">Création de publications Instagram sous le concept de "Booksta"</p>
-                            <p class="date-project-grid">16/03/2025</p>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Projet 4 -->
-                <a href="project-4.html" class="card-project-grid">
-                    <div class="win7-topbar">
-                        <div class="win7-title">
-                            <img src="img/logo.png" alt="icon">
-                            <span>Couverture.exe</span>
-                        </div>
-                        <div class="win7-controls">
-                            <div class="ctrl-btn ctrl-min"><i class='bx bx-minus'></i></div>
-                            <div class="ctrl-btn ctrl-max"><i class='bx bx-rectangle'></i></div>
-                            <div class="ctrl-btn ctrl-close"><i class='bx bx-x'></i></div>
-                        </div>
-                    </div>
-                    <div class="win7-inner">
-                        <div class="image-project-grid"><img src="img/Couverture/Purple_Anya_Nami.jpg" alt="Chanteuse Anya Nami"></div>
-                        <div class="detail-project-grid">
-                            <h3 class="title-project-grid">Couverture de livre d'une célébrité</h3>
-                            <p class="desc-project-grid">Création d'une couverture pour un livre fictif d'une célébrité de notre choix</p>
-                            <p class="date-project-grid">03/05/2025</p>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Projet 5 -->
-                <a href="project-5.html" class="card-project-grid">
-                    <div class="win7-topbar">
-                        <div class="win7-title">
-                            <img src="img/logo.png" alt="icon">
-                            <span>Rebranding_Wiki.exe</span>
-                        </div>
-                        <div class="win7-controls">
-                            <div class="ctrl-btn ctrl-min"><i class='bx bx-minus'></i></div>
-                            <div class="ctrl-btn ctrl-max"><i class='bx bx-rectangle'></i></div>
-                            <div class="ctrl-btn ctrl-close"><i class='bx bx-x'></i></div>
-                        </div>
-                    </div>
-                    <div class="win7-inner">
-                        <div class="image-project-grid"><img src="img/wikipedia/Rebranding_wikipedia_bannière_FB.png" alt="Bannière facebook wikipedia"></div>
-                        <div class="detail-project-grid">
-                            <h3 class="title-project-grid">Rebranding Fictif Wikipedia</h3>
-                            <p class="desc-project-grid">Création d'un rebranding fictif de l'encyclopédie collaborative Wikipedia.</p>
-                            <p class="date-project-grid">11/06/2025</p>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Projet 6 -->
-                <a href="project-6.html" class="card-project-grid">
-                    <div class="win7-topbar">
-                        <div class="win7-title">
-                            <img src="img/logo.png" alt="icon">
-                            <span>Faunesia.exe</span>
-                        </div>
-                        <div class="win7-controls">
-                            <div class="ctrl-btn ctrl-min"><i class='bx bx-minus'></i></div>
-                            <div class="ctrl-btn ctrl-max"><i class='bx bx-rectangle'></i></div>
-                            <div class="ctrl-btn ctrl-close"><i class='bx bx-x'></i></div>
-                        </div>
-                    </div>
-                    <div class="win7-inner">
-                        <div class="image-project-grid"><img src="img/faunesia/Faunesia.png" alt="Affiche pour la maison d'édition fictive Faunésia"></div>
-                        <div class="detail-project-grid">
-                            <h3 class="title-project-grid">Faunésia</h3>
-                            <p class="desc-project-grid">Création du branding de la maison d'édition fictive Faunésia et de plusieurs visuels (Affiche & 1er de couverture)</p>
-                            <p class="date-project-grid">14/06/2025</p>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Projet 7 -->
-                <a href="project-7.html" class="card-project-grid">
-                    <div class="win7-topbar">
-                        <div class="win7-title">
-                            <img src="img/logo.png" alt="icon">
-                            <span>Indie_Game_Fest.exe</span>
-                        </div>
-                        <div class="win7-controls">
-                            <div class="ctrl-btn ctrl-min"><i class='bx bx-minus'></i></div>
-                            <div class="ctrl-btn ctrl-max"><i class='bx bx-rectangle'></i></div>
-                            <div class="ctrl-btn ctrl-close"><i class='bx bx-x'></i></div>
-                        </div>
-                    </div>
-                    <div class="win7-inner">
-                        <div class="image-project-grid"><img src="img/Indi_Game_Fest/Bannière_FB_test_5_Valide.png" alt="Bannière facebook du festival fictif du jeu vidéo indépendant Indie Game Fest"></div>
-                        <div class="detail-project-grid">
-                            <h3 class="title-project-grid">Indie Game Fest</h3>
-                            <p class="desc-project-grid">Création du branding et de la stratégie de communication d'un évènement fictif du jeu vidéo indépendant.</p>
-                            <p class="date-project-grid">25/06/2025</p>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Projet 8 -->
-                <a href="project-8.html" class="card-project-grid">
-                    <div class="win7-topbar">
-                        <div class="win7-title">
-                            <img src="img/logo.png" alt="icon">
-                            <span>Personal_Branding.exe</span>
-                        </div>
-                        <div class="win7-controls">
-                            <div class="ctrl-btn ctrl-min"><i class='bx bx-minus'></i></div>
-                            <div class="ctrl-btn ctrl-max"><i class='bx bx-rectangle'></i></div>
-                            <div class="ctrl-btn ctrl-close"><i class='bx bx-x'></i></div>
-                        </div>
-                    </div>
-                    <div class="win7-inner">
-                        <div class="image-project-grid"><img src="img/personal_branding/Bannière_Linkedin.png" alt="Bannière LinkedIn Basée sur mon personal branding"></div>
-                        <div class="detail-project-grid">
-                            <h3 class="title-project-grid">Personal Branding</h3>
-                            <p class="desc-project-grid">Création de mon Branding appliqué sur mes réseaux sociaux, mon CV et mon portfolio</p>
-                            <p class="date-project-grid">10/10/2025</p>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Projet 9 -->
-                <a href="project-9.html" class="card-project-grid">
-                    <div class="win7-topbar">
-                        <div class="win7-title">
-                            <img src="img/logo.png" alt="icon">
-                            <span>Meme_Museum.exe</span>
-                        </div>
-                        <div class="win7-controls">
-                            <div class="ctrl-btn ctrl-min"><i class='bx bx-minus'></i></div>
-                            <div class="ctrl-btn ctrl-max"><i class='bx bx-rectangle'></i></div>
-                            <div class="ctrl-btn ctrl-close"><i class='bx bx-x'></i></div>
-                        </div>
-                    </div>
-                    <div class="win7-inner">
-                        <div class="image-project-grid"><img src="img/meme_museum/DA_Logo_meme_museum.png" alt="Logo du musé fictif Meme Museum"></div>
-                        <div class="detail-project-grid">
-                            <h3 class="title-project-grid">Meme Museum</h3>
-                            <p class="desc-project-grid">Création d'un logo pour une exposition temporaire nommée "meme museum".</p>
-                            <p class="date-project-grid">23/10/2025</p>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Projet 10 -->
-                <a href="project-10.html" class="card-project-grid">
-                    <div class="win7-topbar">
-                        <div class="win7-title">
-                            <img src="img/logo.png" alt="icon">
-                            <span>Ptit_Festin.exe</span>
-                        </div>
-                        <div class="win7-controls">
-                            <div class="ctrl-btn ctrl-min"><i class='bx bx-minus'></i></div>
-                            <div class="ctrl-btn ctrl-max"><i class='bx bx-rectangle'></i></div>
-                            <div class="ctrl-btn ctrl-close"><i class='bx bx-x'></i></div>
-                        </div>
-                    </div>
-                    <div class="win7-inner">
-                        <div class="image-project-grid"><img src="img/Ptit_Festin/Template_1_printemps_cut.png" alt="Logo du musé fictif Meme Museum"></div>
-                        <div class="detail-project-grid">
-                            <h3 class="title-project-grid">Le Petit Festin Des Frangins</h3>
-                            <p class="desc-project-grid">Création de la communication d'un restaurant sur Arques (St Omer - 62).</p>
-                            <p class="date-project-grid">17/10/2025 - Ajd</p>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Projet 11 -->
-                <a href="project-11.html" class="card-project-grid">
-                    <div class="win7-topbar">
-                        <div class="win7-title">
-                            <img src="img/logo.png" alt="icon">
-                            <span>Soul_Club.exe</span>
-                        </div>
-                        <div class="win7-controls">
-                            <div class="ctrl-btn ctrl-min"><i class='bx bx-minus'></i></div>
-                            <div class="ctrl-btn ctrl-max"><i class='bx bx-rectangle'></i></div>
-                            <div class="ctrl-btn ctrl-close"><i class='bx bx-x'></i></div>
-                        </div>
-                    </div>
-                    <div class="win7-inner">
-                        <div class="image-project-grid"><img src="img/Sould_club/footer.png" alt=""></div>
-                        <div class="detail-project-grid">
-                            <h3 class="title-project-grid">Site Soul Club</h3>
-                            <p class="desc-project-grid">Création d'un site web de blog sur la musique soul dans le cadre du Marathon du Web, évènement organisé par l'IUT de Lens</p>
-                            <p class="date-project-grid">17/12/2025</p>
-                        </div>
-                    </div>
-                </a>
-
-                <!-- Projet 12 -->
-                <a href="project-12.html" class="card-project-grid">
-                    <div class="win7-topbar">
-                        <div class="win7-title">
-                            <img src="img/logo.png" alt="icon">
-                            <span>Eliaut_Elevage.exe</span>
-                        </div>
-                        <div class="win7-controls">
-                            <div class="ctrl-btn ctrl-min"><i class='bx bx-minus'></i></div>
-                            <div class="ctrl-btn ctrl-max"><i class='bx bx-rectangle'></i></div>
-                            <div class="ctrl-btn ctrl-close"><i class='bx bx-x'></i></div>
-                        </div>
-                    </div>
-                    <div class="win7-inner">
-                        <div class="image-project-grid"><img src="img/Eliaut_Elevage/Logo_eliaut.jpg" alt="Logo Eliaut Elevage"></div>
-                        <div class="detail-project-grid">
-                            <h3 class="title-project-grid">Site Eliaut Elevage</h3>
-                            <p class="desc-project-grid">Création du site Web de l'entreprise Eliaut Elevage basée à Méteren dans le Nord.</p>
-                            <p class="date-project-grid">En cours</p>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
+        <!-- NOUVEAU COMPOSANT PANEL BEM ICI -->
         <section id="contact" class="container">
             <h2 class="section-title">CONTACT</h2>
-            <div class="box fix">
-                <div class="win7-topbar">
+            <div class="panel fix">
+                <div class="panel__topbar">
                     <div class="win7-title">
                         <img src="img/logo.png" alt="icon">
                         <span>Contact.exe</span>
@@ -403,36 +110,27 @@
                         <div class="ctrl-btn ctrl-close"><i class='bx bx-x'></i></div>
                     </div>
                 </div>
-                <div class="win7-inner">
+                <div class="panel__content">
                     <div>
                         <img src="img/Motif_x3.svg" alt="motif déco" class="svg svg-up2">
-                    
                         <img src="img/Motif_x3.svg" alt="motif déco" class="svg svg-down2">
                     </div>
                     <div class="contact">
-                        <p class="para desktop">Intéressé(e) par un stage ou une collaboration ? Contactez moi ! Découvrez-moi également sur mes réseaux sociaux !</p>
-                        <p class="para mobile">Intéressé(e) par un stage ou une collaboration ? Contactez moi !</p>
+                        <p class="para desktop">À la recherche d'un alternant ou d'une collaboration ? Contactez moi ! Découvrez-moi également sur mes réseaux sociaux !</p>
+                        <p class="para mobile">À la recherche d'un alternant ou d'une collaboration ? Contactez moi !</p>
                         <div class="cells1">
-                            <div class="cell1">
-                                <a href="download/CV_RICHARD_Nicolas.pdf" download="CV_RICHARD_Nicolas.pdf" target="_blank">
-                                    <i class='bx bxs-download'></i> CV (graphique)
-                                </a>
-                            </div>
-                            <div class="cell1">
-                                <a href="mailto:richard.nicolas.a.o@gmail.com" target="_blank">
-                                    <i class='bx bxs-download'></i> CV (pour ATS)<br>(me contacter)
-                                </a>
-                            </div>
-                            <div class="cell1">
-                                <a href="&#x6D;&#x61;&#x69;&#x6C;&#x74;&#x6F;&#x3A;&#x72;&#x69;&#x63;&#x68;&#x61;&#x72;&#x64;&#x2E;&#x6E;&#x69;&#x63;&#x6F;&#x6C;&#x61;&#x73;&#x2E;&#x61;&#x2E;&#x6F;&#x40;&#x67;&#x6D;&#x61;&#x69;&#x6C;&#x2E;&#x63;&#x6F;&#x6D;" target="_blank">
-                                    <i class='bx bxl-gmail'></i> richard.nicolas.a.o<br>@gmail.com
-                                </a>
-                            </div>
-                            <div class="cell1">
-                                <a href="https://www.instagram.com/sir.yander/" target="_blank">
-                                    <i class='bx bxl-instagram' ></i> sir.yander
-                                </a>
-                            </div>
+                            <a href="download/CV_RICHARD_Nicolas.pdf" download="CV_RICHARD_Nicolas.pdf" target="_blank" class="cell1">
+                                <i class='bx bxs-download'></i> CV (graphique)
+                            </a>
+                            <a href="mailto:richard.nicolas.a.o@gmail.com" target="_blank" class="cell1">
+                                <i class='bx bxs-download'></i> CV (pour ATS)<br>(me contacter)
+                            </a>
+                            <a href="&#x6D;&#x61;&#x69;&#x6C;&#x74;&#x6F;&#x3A;&#x72;&#x69;&#x63;&#x68;&#x61;&#x72;&#x64;&#x2E;&#x6E;&#x69;&#x63;&#x6F;&#x6C;&#x61;&#x73;&#x2E;&#x61;&#x2E;&#x6F;&#x40;&#x67;&#x6D;&#x61;&#x69;&#x6C;&#x2E;&#x63;&#x6F;&#x6D;" target="_blank" class="cell1">
+                                <i class='bx bxl-gmail'></i> richard.nicolas.a.o<br>@gmail.com
+                            </a>
+                            <a href="https://www.instagram.com/sir.yander/" target="_blank" class="cell1">
+                                <i class='bx bxl-instagram' ></i> sir.yander
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -441,7 +139,7 @@
     </main>
 
     <footer class="footer">
-        <p>&copy; 2024 Nicolas Richard. Tous droits réservés.</p>
+        <p>&copy; 2026 Nicolas Richard. Tous droits réservés.</p>
         <a href="&#x6D;&#x61;&#x69;&#x6C;&#x74;&#x6F;&#x3A;&#x72;&#x69;&#x63;&#x68;&#x61;&#x72;&#x64;&#x2E;&#x6E;&#x69;&#x63;&#x6F;&#x6C;&#x61;&#x73;&#x2E;&#x61;&#x2E;&#x6F;&#x40;&#x67;&#x6D;&#x61;&#x69;&#x6C;&#x2E;&#x63;&#x6F;&#x6D;" target="_blank"><p>richard.nicolas.a.o@gmail.com</p></a>
     </footer>
 

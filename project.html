@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projet - Nicolas Richard</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="icon" type="image/png" href="img/logo.png">
+</head>
+<body>
+    <header class="header">
+        <div class="header-left">
+            <a href="index.html">
+                <img src="img/logo.png" alt="Logo Nicolas Richard" class="logo">
+            </a>
+        </div>
+        <nav class="header-btns">
+            <a href="index.html" class="nav-btn">À Propos</a>
+            <a href="index.html#projects" class="nav-btn">Projets</a>
+            <a href="index.html#contact" class="nav-btn">Contact</a>
+        </nav>
+        <div class="header-right">
+            <div class="theme-dropdown-container">
+                <button id="theme-dropdown-btn" class="social-icon" title="Changer de thème" style="border: none; cursor: pointer; background: transparent; padding: 0;">
+                    <img src="img/karde_me_logo.jpg" alt="Thèmes" style="background-color: var(--bg-panel); border-radius: var(--rad-sm); padding: 12px; height: 22px; width: 22px;">
+                </button>
+                <div id="theme-dropdown-menu" class="theme-dropdown-menu">
+                    <button class="theme-option" data-theme="default">💜 Défaut</button>
+                    <button class="theme-option" data-theme="frutiger">🐬 Frutiger Aero</button>
+                </div>
+            </div>
+            <a href="https://www.linkedin.com/in/nicolas-richard-a-o/" target="_blank" class="social-icon">
+                <img src="img/Linkedin.svg" alt="LinkedIn">
+            </a>
+            <a href="https://www.karde.me/yander" target="_blank" class="karde-logo">
+                <img src="img/karde_me_logo.jpg" alt="Karde.me">
+            </a>
+        </div>
+    </header>
+
+    <main>
+        <section>
+            <div id="zoomOverlay" class="overlay">
+                <i class='bx bx-x close-btn'></i>
+                <img id="overlayImage" alt="Image en grand" class="container">
+            </div>
+        </section>
+
+        <section class="container">
+            <!-- NOUVEAU COMPOSANT PANEL BEM ICI -->
+            <div class="panel">
+                <div class="panel__topbar">
+                    <div class="win7-title">
+                        <img src="img/logo.png" alt="icon">
+                        <span id="win7-project-title">Projet.exe</span>
+                    </div>
+                    <div class="win7-controls">
+                        <div class="ctrl-btn ctrl-min"><i class='bx bx-minus'></i></div>
+                        <div class="ctrl-btn ctrl-max"><i class='bx bx-rectangle'></i></div>
+                        <div class="ctrl-btn ctrl-close"><i class='bx bx-x'></i></div>
+                    </div>
+                </div>
+
+                <div class="panel__content">
+                    <div class="col1">
+                        <div>
+                            <img src="img/Motif_x3.svg" alt="motif déco" class="svg svg-up3">
+                            <img id="project-main-image" src="" alt="Image principale" class="image-project-page">
+                            <img src="img/Motif_x3.svg" alt="motif déco" class="svg svg-down3">
+                        </div>
+                        <div class="cells2">
+                            <h2 id="project-title" class="title-project-page">Chargement...</h2>
+                            <div id="project-tags"></div>
+                            <p id="project-desc" class="para" style="margin-top: 15px; font-size: 1.1rem; max-width: 600px;"></p>
+                        </div>
+                    </div>
+                    
+                    <div id="galerie" class="col2" style="background-color: transparent;">
+                        <h2>Galerie</h2>
+                        <div id="project-gallery" class="galerie-grid"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Nicolas Richard. Tous droits réservés.</p>
+        <a href="&#x6D;&#x61;&#x69;&#x6C;&#x74;&#x6F;&#x3A;&#x72;&#x69;&#x63;&#x68;&#x61;&#x72;&#x64;&#x2E;&#x6E;&#x69;&#x63;&#x6F;&#x6C;&#x61;&#x73;&#x2E;&#x61;&#x2E;&#x6F;&#x40;&#x67;&#x6D;&#x61;&#x69;&#x6C;&#x2E;&#x63;&#x6F;&#x6D;" target="_blank"><p>richard.nicolas.a.o@gmail.com</p></a>
+    </footer>
+
+    <script src="script.js" defer></script>
+</body>
+</html>

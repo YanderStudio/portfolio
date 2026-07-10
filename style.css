@@ -1,100 +1,145 @@
 @import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+
+/* ========================================= */
+/* 1. VARIABLES & THÈMES (DESIGN TOKENS)     */
+/* ========================================= */
 :root {
-    --main-bg-start: #3F4783;
-    --main-bg-end: #353B60;
-    --primary-block-bg: #515ABA;
-    --secondary-block-bg: #606ACC;
+    /* --- THÈME PAR DÉFAUT 💜 --- */
+    --bg-body-start: #3F4783;
+    --bg-body-end: #353B60;
+    --bg-panel: #515ABA;
+    --bg-panel-hover: #606ACC;
+    --bg-header: rgba(59, 66, 119, 0.9);
     --title-bg: #6B77DB;
+    
+    --text-main: #DFE5FD;
     --text-accent: #A7B6FF;
-    --text-light: #DFE5FD;
-    --shadow-color: rgba(0, 0, 0, 0.25);
-    --funnel-font: 'Funnel Display', sans-serif;
-    --montserrat-font: 'Montserrat', sans-serif;
-    --rad5: 5px;
-    --rad8: 8px;
-    --rad11: 11px;
-    --rad24: 24px;
+    
+    --shadow-base: rgba(0, 0, 0, 0.25);
+    --border-panel: none;
+    --panel-backdrop: none;
+
+    /* --- TYPOGRAPHIE & ESPACEMENTS --- */
+    --font-title: 'Funnel Display', sans-serif;
+    --font-text: 'Montserrat', sans-serif;
+    --rad-sm: 5px;
+    --rad-md: 8px;
+    --rad-lg: 11px;
+    --rad-xl: 24px;
 }
 
-/* ------------------------------ */
-/* ------------------------------ */
-/* ------------ Base ------------ */
-/* ------------------------------ */
-/* ------------------------------ */
+body.theme-frutiger {
+    /* --- THÈME FRUTIGER AERO 🐬 --- */
+    --bg-body-start: #7cd5ef;
+    --bg-body-end: #0b789e;
+    --bg-panel: rgba(140, 190, 255, 0.55);
+    --bg-panel-hover: rgba(152, 192, 255, 0.7);
+    --bg-header: rgba(140, 190, 255, 0.72);
+    
+    --text-main: #4b5564;
+    --text-accent: #0b789e;
+    
+    --shadow-base: rgba(0, 0, 0, 0.22);
+    --border-panel: 1px solid rgba(255, 255, 255, 0.4);
+    --panel-backdrop: blur(4px);
+}
 
+/* ========================================= */
+/* BASE ET LAYOUT                            */
+/* ========================================= */
 body {
     margin: 0;
-    font-family: 'Montserrat', sans-serif;
-    color: var(--text-light);
-    background: linear-gradient(135deg, var(--main-bg-start), var(--main-bg-end));
+    font-family: var(--font-text);
+    color: var(--text-main);
+    background: linear-gradient(135deg, var(--bg-body-start), var(--bg-body-end));
     line-height: 1.4;
     scroll-behavior: smooth;
 }
 h1, h2, h3 {
     font-weight: 700;
-    color: var(--text-light);
+    color: var(--text-main);
     text-transform: uppercase;
 }
 a {
     text-decoration: none;
-    color: var(--text-light);
+    color: var(--text-main);
 }
 img {
     max-width: 100%;
     height: auto;
     display: block;
 }
-.none {
-    display: none;
-}
-.container {
-    max-width: 1300px;
-    margin: 0 auto;
-}
-main{
-    margin-top: 17vh;
-}
+.none { display: none; }
+.container { max-width: 1300px; margin: 0 auto; }
+main { margin-top: 17vh; }
+
 .section-title {
-    font-family: var(--funnel-font);
-    text-shadow: 0 8px 8px var(--shadow-color);
+    font-family: var(--font-title);
+    text-shadow: 0 8px 8px var(--shadow-base);
     margin-bottom: 50px;
     font-size: 4em;
     letter-spacing: 1px;
     text-align: center;
 }
-.desktop{
-    display: block;
-}
-.mobile{
-    display: none;
-}
-.box{
+.desktop { display: block; }
+.mobile { display: none; }
+.svg { position: absolute; width: 100px; height: auto; z-index: 1; }
+
+/* ========================================= */
+/* 2. COMPOSANT : PANEL (Les fenêtres BEM)   */
+/* ========================================= */
+.panel {
+    background-color: var(--bg-panel);
+    border: var(--border-panel);
+    backdrop-filter: var(--panel-backdrop);
+    -webkit-backdrop-filter: var(--panel-backdrop);
+    border-radius: var(--rad-lg);
+    box-shadow: 0 8px 8px var(--shadow-base);
+    overflow: hidden;
+    margin-bottom: 6vh;
     display: flex;
     flex-direction: column;
-    margin-bottom:  6vh;
-    background-color: var(--primary-block-bg);
-    box-shadow: 0 8px 8px var(--shadow-color);
-    text-align: left;
     padding: 22px;
-    border-radius: var(--rad24);
     gap: 22px;
     position: relative;
+}
+.panel__topbar { display: none; }
+.panel__content { display: contents; } /* Rendu natif par défaut pour ne pas casser ta grid */
+
+/* Commandes type Windows 7 */
+.win7-title { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; font-weight: 600; color: #000; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8); }
+.win7-title img { height: 18px; }
+.win7-controls { 
+    display: flex; 
+    gap: 0px; 
+    background: transparent; 
+    border-radius: 0 0 4px 4px; 
     overflow: hidden;
+    height: 100%;
+    margin-top: -20px;
+    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4); 
+    border-left: 1px solid rgba(0,0,0,0.2); 
+    border-right: 1px solid rgba(0,0,0,0.2); 
+    border-bottom: 1px solid rgba(0,0,0,0.2); 
 }
-.svg{
-    position: absolute;
-    width: 100px;
-    height: auto;
-    z-index: 1;
+.ctrl-btn { 
+    display: flex; 
+    justify-content: center; 
+    align-items: center;
+    width: 28px; 
+    height: 20px; 
+    color: white; 
+    font-size: 14px; 
+    background: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(62, 78, 119, 0.8) 50%, rgba(62, 78, 119, 0.9) 100%); 
+    box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.5); 
+    border-right: 1px solid rgba(0,0,0,0.4); 
 }
+.ctrl-close { width: 44px; background: linear-gradient(to bottom, rgba(255,255,255,0.5) 0%, rgba(196, 15, 5, 0.8) 50%, rgba(196, 15, 5, 0.9) 100%); border-right: none; font-size: 18px; }
 
-/* -------------------------------- */
-/* -------------------------------- */
-/* ------------ Header ------------ */
-/* -------------------------------- */
-/* -------------------------------- */
-
+/* ========================================= */
+/* HEADER & DROPDOWN                         */
+/* ========================================= */
 .header {
     display: flex;
     justify-content: space-between;
@@ -106,925 +151,242 @@ main{
     width: 100%;
     z-index: 1000;
     box-sizing: border-box;
-    background: linear-gradient(to bottom,
-        rgba(59, 66, 119, 1) 0%,
-        rgba(59, 66, 119, 0) 100%
-    );
+    background: linear-gradient(to bottom, var(--bg-header) 0%, transparent 100%);
 }
-.header-left {
-    flex-grow: 1;
-    display: flex;
-    justify-content: flex-start;
-    flex-basis: 0;
-}
-.header-left .logo {
-    height: 47px;
-    filter: drop-shadow(0 8px 8px var(--shadow-color));
-    border-radius: var(--rad5);
-}
-.header-btns {
-    display: flex;
-    gap: 40px;
-}
+.header-left { flex-grow: 1; display: flex; justify-content: flex-start; flex-basis: 0; }
+.header-left .logo { height: 47px; filter: drop-shadow(0 8px 8px var(--shadow-base)); border-radius: var(--rad-sm); }
+.header-btns { display: flex; gap: 40px; }
 .nav-btn {
-    font-family: 'Funnel Display', sans-serif;
-    background-color: var(--primary-block-bg);
+    font-family: var(--font-title);
+    background-color: var(--bg-panel);
     padding: 10px 35px;
-    border-radius: var(--rad24);
+    border-radius: var(--rad-xl);
     transition: background-color 0.3s ease, transform 0.2s ease;
-    box-shadow: 0 8px 8px var(--shadow-color);
+    box-shadow: 0 8px 8px var(--shadow-base);
     font-weight: 400;
     font-size: 1.1rem;
 }
-.nav-btn:hover {
-    background-color: var(--secondary-block-bg);
-    transform: translateY(-2px);
+.nav-btn:hover { background-color: var(--bg-panel-hover); transform: translateY(-2px); }
+.header-right { display: flex; gap: 24px; flex-grow: 1; justify-content: flex-end; flex-basis: 0; }
+.karde-logo, .social-icon img {
+    height: 22px; width: 22px; padding: 12px; border-radius: var(--rad-sm);
+    filter: drop-shadow(0 8px 8px var(--shadow-base)); transition: transform 0.2s ease;
 }
-.header-right {
-    display: flex; 
-    gap: 24px;
-    flex-grow: 1;
-    justify-content: flex-end;
-    flex-basis: 0;
-}
-.social-icon img {
-    height: 22px;
-    width: 22px;
-    background-color: var(--primary-block-bg);
-    padding: 12px;
-    border-radius: var(--rad5);
-    filter: drop-shadow(0 8px 8px var(--shadow-color));
-    transition: transform 0.2s ease;    
-}
-.social-icon img:hover {
-    background-color: var(--secondary-block-bg);
-    transform: translateY(-2px);
-}
+.karde-logo { background-color: #ffffff; }
+.social-icon img { background-color: var(--bg-panel); }
+.karde-logo:hover, .social-icon img:hover { transform: translateY(-2px); }
+.social-icon img:hover { background-color: var(--bg-panel-hover); }
 
-/* ------------------------------- */
-/* ------------------------------- */
-/* ------------ about ------------ */
-/* ------------------------------- */
-/* ------------------------------- */
+.theme-dropdown-container { position: relative; display: inline-block; }
+.theme-dropdown-menu {
+    display: none; position: absolute; top: calc(100% + 10px); right: 0;
+    background-color: var(--bg-panel); box-shadow: 0 8px 16px var(--shadow-base);
+    border-radius: var(--rad-lg); padding: 8px; flex-direction: column; gap: 5px;
+    min-width: 160px; z-index: 2000; border: 1px solid var(--bg-panel-hover);
+}
+.theme-dropdown-menu.show { display: flex; }
+.theme-option {
+    background: transparent; border: none; color: var(--text-main);
+    font-family: var(--font-text); font-size: 0.95rem; font-weight: 600;
+    padding: 10px 14px; text-align: left; border-radius: var(--rad-md);
+    cursor: pointer; transition: background-color 0.2s ease, transform 0.1s ease;
+    display: flex; align-items: center; gap: 8px;
+}
+.theme-option:hover { background-color: var(--bg-panel-hover); color: var(--text-accent); transform: translateX(3px); }
 
-.svg-up1{
-    transform: translate(-42%, -42%);
-}
-.svg-down1{
-    bottom: -4.5%;
-    right: -2%;
-    transform: rotate(180deg);
-}
-.col1{
-    display: flex;
-    align-items: center;
-    gap: 4vw;
-}
-.col2{
-    margin: 0 22px;
-}
-.pdp{
-    position: relative;
-    max-width: 400px;
-    width: 100%;
-    height: auto;
-    border-radius: var(--rad11);
-    z-index: 2;
-}
-#name-title h1{
-    font-family: var(--montserrat-font);
-    font-size: 6em;
-    margin-bottom: 0px;
-    font-weight: 900;
-    text-shadow: 0 8px 8px var(--shadow-color);
-    margin-block-start: 0;
-}
-.col2 .para{
-    margin: 1em 0;
-    font-size: 1.15rem;
-}
-.para{
-    font-family: 'Funnel Display', sans-serif;
-    position: relative;
-    z-index: 10;
-    margin: 0;
-    font-size: 1.25rem;
-    font-weight: 300;
-    color: var(--text-light);
-}
+/* ========================================= */
+/* SECTIONS: ABOUT & CONTACT                 */
+/* ========================================= */
+.svg-up1 { transform: translate(-42%, -42%); }
+.svg-down1 { bottom: -4.5%; right: -2%; transform: rotate(180deg); }
+.col1 { display: flex; align-items: center; gap: 4vw; }
+.col2 { margin: 0 22px; }
+.pdp { position: relative; max-width: 400px; width: 100%; height: auto; border-radius: var(--rad-lg); z-index: 2; }
+#name-title h1 { font-family: var(--font-text); font-size: 6em; font-weight: 900; text-shadow: 0 8px 8px var(--shadow-base); margin: 0; }
+.col2 .para { margin: 1em 0; font-size: 1.15rem; }
+.para { font-family: var(--font-title); position: relative; z-index: 10; margin: 0; font-size: 1.25rem; font-weight: 300; color: var(--text-main); white-space: pre-line; }
 
-/* ------------------------------- */
-/* ------------------------------- */
-/* ------------- CTA ------------- */
-/* ------------------------------- */
-/* ------------------------------- */
+.arrow { text-align: center; position: relative; }
+.scroll-down-arrow { margin-top: 11px; font-size: 4em; display: inline-block; animation: bounce 2s infinite; }
+.scroll-down-arrow img { width: 50px; height: 50px; filter: drop-shadow(0 8px 8px var(--shadow-base)); }
+@keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateY(0); } 40% { transform: translateY(-15px); } 60% { transform: translateY(-8px); } }
 
-.arrow{
-    text-align: center;
-    position: relative;
+.section-contact { text-align: center; position: relative; }
+.svg-up2 { transform: translate(-47%, -47%); }
+.svg-down2 { bottom: -12.5%; right: -2%; transform: rotate(180deg); }
+.contact { display: flex; flex-direction: column; gap: 22px; }
+.cells1 { display: flex; flex-direction: row; align-items: center; gap: 11px; flex-wrap: wrap; }
+.cell1 {
+    display: flex; align-items: center; flex-direction: row; color: var(--text-main);
+    background-color: var(--title-bg); box-shadow: 0 8px 8px var(--shadow-base);
+    border-radius: var(--rad-xl); position: relative; z-index: 10; padding: 11px 22px;
+    gap: 11px; font-size: 1rem; white-space: nowrap; cursor: pointer; transition: background-color 0.3s ease, transform 0.2s ease;
 }
-.scroll-down-arrow{
-    margin-top: 11px;
-    font-size: 4em;
-    display: inline-block;
-    animation: bounce 2s infinite;
-}
-.scroll-down-arrow img{
-    width: 50px;
-    height: 50px;
-    filter: drop-shadow(0 8px 8px var(--shadow-color));
-}
-@keyframes bounce {
-    0%, 20%, 50%, 80%, 100% {
-        transform: translateY(0);
-    }
-    40% {
-        transform: translateY(-15px);
-    }
-    60% {
-        transform: translateY(-8px);
-    }
-}
+.cell1:hover { color: var(--text-accent); transform: translateY(-5px); }
+.cell1:hover a, .cell1:hover i { color: var(--text-accent); }
+.cell1 i { font-size: 1.25rem; }
+.cell1 br { display: none; }
+.fix { gap: 0; }
 
-/* ------------------------------- */
-/* ------------------------------- */
-/* ----------- Projets ----------- */
-/* ------------------------------- */
-/* ------------------------------- */
+/* ========================================= */
+/* PROJETS (GRILLE)                          */
+/* ========================================= */
+.grid-projects { display: grid; grid-template-columns: repeat(auto-fill, minmax(390px, 1fr)); gap: 30px; margin: 0 auto; }
+.card-project-grid {
+    background-color: var(--bg-panel); padding: 16px; border-radius: var(--rad-lg);
+    box-shadow: 0 8px 8px var(--shadow-base); text-align: left; transition: transform 0.3s ease; min-height: 400px; display: flex; flex-direction: column;
+}
+.card-project-grid:hover { transform: translateY(-5px); background-color: var(--bg-panel-hover); }
+.image-project-grid {
+    width: 100%; height: 215px; background-color: var(--bg-panel-hover); border-radius: var(--rad-md);
+    margin-bottom: 22px; display: flex; justify-content: center; align-items: center; font-style: italic;
+    color: var(--text-accent); overflow: hidden; position: relative; z-index: 100;
+}
+.image-project-grid img { height: 100%; width: 100%; object-fit: cover; }
+.detail-project-grid { padding: 0 11px; display: flex; flex-direction: column; flex-grow: 1; }
+.title-project-grid { font-size: 1.5em; color: var(--text-main); display: inline-block; margin-bottom: 0.2em; text-shadow: 0 8px 8px var(--shadow-base); }
+.desc-project-grid { color: var(--text-main); margin: 0; font-size: 1.25rem; margin-bottom: 11px; font-family: var(--font-title); font-weight: 300; flex-grow: 1; }
+.date-project-grid { color: var(--text-accent); font-weight: bold; font-size: 0.7rem; text-align: end; }
 
-.grid-projects{
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(390px, 1fr)); 
-    gap: 30px;
-    margin: 0 auto;
+/* ========================================= */
+/* PAGE PROJET UNIQUE                        */
+/* ========================================= */
+.svg-up3 { top: -2%; left: -2%; }
+.svg-down3 { bottom: -2%; right: -2%; transform: rotate(180deg); }
+.image-project-page { position: relative; max-width: 750px; width: 100%; height: auto; border-radius: var(--rad-lg); z-index: 2; aspect-ratio: 5/3; object-fit: cover; }
+.title-project-page { font-family: var(--font-text); font-size: 4em; margin-bottom: 0.2em; font-weight: 900; text-shadow: 0 8px 8px var(--shadow-base); margin-block-start: 0; }
+.cells2 { display: flex; flex-direction: column; }
+.cell2 {
+    display: inline-block; font-family: var(--font-text); text-transform: uppercase; font-size: 1rem;
+    font-weight: 600; color: var(--text-accent); background-color: var(--bg-panel-hover);
+    box-shadow: 0 8px 8px var(--shadow-base); margin-top: 0; padding: 5px 15px; border-radius: var(--rad-xl); margin-right: 11px; margin-bottom: 11px;
 }
-.card-project-grid{
-    background-color: var(--primary-block-bg);
-    padding: 16px;
-    border-radius: var(--rad11);
-    box-shadow: 0 8px 8px var(--shadow-color);
-    text-align: left;
-    transition: transform 0.3s ease;
-    min-height: 400px;
-}
-.card-project-grid:hover{
-    transform: translateY(-5px);
-    background-color: var(--secondary-block-bg);
-}
-.image-project-grid{
-    width: 100%;
-    height: 215px;
-    background-color: var(--secondary-block-bg);
-    border-radius: var(--rad8);
-    margin-bottom: 22px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-style: italic;
-    color: var(--text-accent);
-    overflow: hidden;
-    position: relative;
-    z-index: 100;
-}
-.image-project-grid img{
-    height: 100%;
-    width: 100%;
-    object-fit: cover;
-}
-.detail-project-grid{
-    padding: 0 11px;
-    display: flex;
-    flex-direction: column;
-    height: calc(100% - 215px - 22px);
-}
-.title-project-grid{
-    font-size: 1.5em;
-    color: var(--text-light);
-    display: inline-block;
-    margin-bottom: 0.2em;
-    text-shadow: 0 8px 8px var(--shadow-color);
-}
-.desc-project-grid{
-    color: var(--text-light);
-    margin: 0;
-    font-size: 1.25rem;
-    margin-bottom: 11px;
-    font-family: 'Funnel Display', sans-serif;
-    font-weight: 300;
-    flex-grow: 1;
-}
-.date-project-grid{
-    color: var(--text-accent);
-    font-weight: bold;
-    font-size: 0.7rem;
-    text-align: end;
-}
+#galerie { background-color: var(--bg-panel); z-index: 100; }
+.galerie-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 30px; }
+.galerie-grid img { border-radius: var(--rad-md); opacity: 0.6; box-shadow: 0 8px 8px var(--shadow-base); transition: opacity 0.4s ease; aspect-ratio: 16/9; object-fit: cover; }
+.galerie-grid img:hover { opacity: 1; cursor: pointer; }
+.preview { z-index: 100; }
 
-/* ------------------------------- */
-/* ------------------------------- */
-/* ----------- Contact ----------- */
-/* ------------------------------- */
-/* ------------------------------- */
+/* ========================================= */
+/* OVERLAY ZOOM & FOOTER                     */
+/* ========================================= */
+.overlay { display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.9); flex-direction: column; justify-content: center; align-items: center; }
+.overlay.active { display: flex; }
+#overlayImage { max-width: 90%; max-height: 80%; display: block; margin: 20px auto; }
+.close-btn { position: absolute; top: 2%; right: 2%; color: var(--text-main); font-size: 3rem; font-weight: bold; cursor: pointer; transition: 0.3s; }
 
-.section-contact {
-    text-align: center;
-    position: relative;
-}
-.svg-up2{
-    transform: translate(-47%, -47%);
-}
-.svg-down2{
-    bottom: -12.5%;
-    right: -2%;
-    transform: rotate(180deg);
-}
-.contact {
-    display: flex;
-    flex-direction: column;
-    gap: 22px;
-}
-.cells1{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 11px;
-    flex-wrap: wrap;
-}
-.cell1{
-    display: flex;
-    align-items: center;
-    flex-direction: row;
-    color: var(--text-light);
-    background-color: var(--title-bg);
-    box-shadow: 0 8px 8px var(--shadow-color);
-    border-radius: var(--rad24);
-    position: relative;
-    z-index: 10;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-}
-.cell1:hover{
-    color: var(--text-accent);
-    transform: translateY(-5px);
-}
-.cell1 a{
-    margin: 11px 22px;
-    display: flex;
-    align-items: center;
-    gap: 11px;
-    font-size: 1rem;
-    white-space: nowrap;
-}
-.cell1:hover a {
-    color: var(--text-accent);
-}
-.cell1 i{
-    font-size: 1.25rem;
-}
-.cell1:hover i {
-    color: var(--text-accent);
-}
-.cell1 br{
-    display: none;
-}
-.fix{
-    gap: 0;
-}
+footer { background-color: var(--bg-body-end); color: var(--text-accent); text-align: center; padding: 20px 0; font-size: 0.85em; box-shadow: 0 -8px 8px var(--shadow-base); }
+footer a { text-decoration: underline; color: var(--text-accent); }
+footer a:hover { color: var(--text-main); }
 
-/* ------------------------------- */
-/* ------------------------------- */
-/* ---------- Responsiv ---------- */
-/* ------------------------------- */
-/* ------------------------------- */
-
-@media (max-width: 1430px) {
-    .container{
-        max-width: 1300px;
-    }
-}
-@media (max-width: 1330px) {
-    .container{
-        max-width: 1200px;
-    }
-
-    .grid-projects{
-        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    }
-}
-@media (max-width: 1230px) {
-    .container{
-        max-width: 1100px;
-    }
-
-    .pdp {
-        max-width: 300px;
-        width: 100%;
-        height: auto;
-    }
-}
-@media (max-width: 1130px) {
-    .container{
-        max-width: 1000px;
-    }
-
-    #name-title h1 {
-        font-size: 5em;
-        margin-bottom: 0;
-    }    
-}
-@media (max-width: 1030px) {
-    .container{
-        max-width: 800px;
-    }
-
-    #name-title h1 {
-        font-size: 3em;
-        margin-bottom: 0;
-    }
-    .pdp {
-        max-width: 200px;
-        width: 100%;
-        height: auto;
-    }
-    .col2 .para{
-        font-size: 1.1125rem;
-    }
-
-    .section-title{
-        font-size: 3rem;
-    }
-
-    .cell1 a{
-        font-size: 0.9rem;
-    }
-    .cell1 i {
-        font-size: 1rem;
-    }
-    .mail a{
-        font-size: 0.7rem;
-    }
-}
-@media (max-width: 768px) {
-    .header {
-        gap: 15px;
-        padding: 11px 22px;
-    }
-    .header-btns{
-        display: none;
-    }
-
-    .container{
-        max-width: 500px;
-    }
-
-    .pdp {
-        max-width: 200px;
-        width: 100%;
-        height: auto;
-    }
-    .name-title h1 {
-        font-size: 2.5em;
-        position: relative;
-        z-index: 10;
-        margin-bottom: 1;
-    }
-    .svg{
-        position: absolute;
-        width: 80px;
-        height: auto;
-        z-index: 1;
-    }
-    .svg-up2{
-        transform: translate(-55%, -57%);
-    }
-    .svg-down2{
-        bottom: -4%;
-        right: -6.8%;
-    }
-    .col2 .para{
-        margin: 0.7em 0;
-        font-size: 1rem;
-    }
-    .desktop{
-        display: none;
-    }
-    .mobile{
-        display: block;
-    }
-    .content{
-        gap: 11px;
-    }
-    .section-title {
-        font-size: 2.8em;
-        padding: 8px 20px;
-    }
-    .grid-projects {
-        grid-template-columns: repeat(auto-fill, minmax(205px, 1fr));
-        justify-content: center;
-        gap: 20px;
-    }
-    .image-project-grid{
-        height: 190px;
-    }
-    .desc-project{
-        font-size: 1.05rem;
-    }
-}
-@media (max-width: 530px) {
-    .container{
-        max-width: 300px;
-    }
-
-    #name-title h1 {
-        font-size: 1.75em;
-        margin-bottom: 0;
-    }
-    .col2 .para{
-        font-size: 0.95rem;
-    }
-
-    .contact .para{
-        font-size: 1rem;
-    }
-    .cell1 br{
-        display: block;
-    }
-}
-
-/* -------------------------------- */
-/* -------------------------------- */
-/* -------------------------------- */
-/* -------------------------------- */
-/* --------- Page  Projet --------- */
-/* -------------------------------- */
-/* -------------------------------- */
-/* -------------------------------- */
-/* -------------------------------- */
-
-.svg-up3{
-    top: -2%;
-    left: -2%;
-}
-.svg-down3{
-    bottom: -2%;
-    right: -2%;
-    transform: rotate(180deg);
-}
-.image-project-page{
-    position: relative;
-    max-width: 750px;
-    width: 100%;
-    height: auto;
-    border-radius: var(--rad11);
-    z-index: 2;
-    aspect-ratio: 5/3;
-    object-fit: cover;
-}
-.title-project-page{
-    font-family: var(--montserrat-font);
-    font-size: 4em;
-    margin-bottom: 0.2em;
-    font-weight: 900;
-    text-shadow: 0 8px 8px var(--shadow-color);
-    margin-block-start: 0;
-}
-.cells2{
-    display: flex;
-    flex-direction: column;;
-}
-.cell2{
-    display: inline-block;
-    font-family: var(--montserrat-font);
-    text-transform: uppercase;
-    font-size: 1rem;
-    font-weight: 600;
-    color: var(--text-accent);
-    background-color: var(--secondary-block-bg);
-    box-shadow: 0 8px 8px var(--shadow-color);
-    margin-top: 0;
-    padding: 5px 15px;
-    border-radius: var(--rad24);
-    margin-right: 11px;
-}
-#galerie{
-    background-color: var(--primary-block-bg);
-    z-index: 100;
-}
-.galerie-grid{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    gap: 30px;
-}
-.galerie-grid img{
-    border-radius: var(--rad8);
-    opacity: 0.6;
-    box-shadow: 0 8px 8px var(--shadow-color);
-    transition: opacity 0.4s ease;
-    aspect-ratio: 16/9;
-    object-fit: cover;
-}
-.galerie-grid img:hover{
-    opacity: 1;
-    cursor: pointer;
-}
-.preview{
-    z-index: 100;    
-}
-
-/* --------------------------------- */
-/* --------------------------------- */
-/* ------------ Overlay ------------ */
-/* --------------------------------- */
-/* --------------------------------- */
-
-.overlay {
-    display: none;
-    position: fixed; 
-    z-index: 1000; 
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.9);
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-}
-.overlay.active {
-    display: flex;
-}
-#overlayImage {
-    max-width: 90%;
-    max-height: 80%;
-    display: block;
-    margin: 20px auto;
-}
-.close-btn {
-    position: absolute;
-    top: 2%;
-    right: 2%;
-    color: var(--text-light);
-    font-size: 40px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: 0.3s;
-    font-size: 3rem;
-}
-
-/* ------------------------------- */
-/* ------------------------------- */
-/* ---------- Responsiv ---------- */
-/* ------------------------------- */
-/* ------------------------------- */
-
-@media (max-width: 1430px) {
-}
-@media (max-width: 1330px) {
-}
-@media (max-width: 1230px) {
-}
-@media (max-width: 1130px) {
-    .title-project-page{
-        font-size: 3em;
-    }
-}
-@media (max-width: 1030px) {
-    .title-project-page{
-        font-size: 2em;
-    }
-    .cell2{
-        font-size: 0.8rem;
-    }
-}
-@media (max-width: 768px) {
-    .title-project-page{
-        font-size: 1.5em;
-        font-weight: 800;
-    }
-    .cell2{
-        font-size: 0.5rem;
-    }
-    .galerie-grid{
-        gap: 10px;
-    }
-}
-@media (max-width: 530px) {
-}
-
-/* -------------------------------- */
-/* -------------------------------- */
-/* ------------ Footer ------------ */
-/* -------------------------------- */
-/* -------------------------------- */
-
-footer {
-    background-color: var(--main-bg-end);
-    color: var(--text-accent);
-    text-align: center;
-    padding: 20px 0;
-    font-size: 0.85em;
-    box-shadow: 0 -8px 8px var(--shadow-color);
-}
-footer a {
-    text-decoration: underline;
-    color: var(--text-accent);
-}
-footer a:hover {
-    color: var(--text-light);
-}
-
-/* Cache l'interface Windows dans le thème par défaut */
-.win7-topbar {
-    display: none;
-}
-/* Le inner ne change rien au design plat par défaut */
-.win7-inner {
-    display: contents; 
-}
-
-
-
-/* ----------------------------------- */
-/* ----- THÈME FRUTIGER AERO --------- */
-/* ----------------------------------- */
-
+/* ========================================= */
+/* SURCHARGES THÈME : FRUTIGER AERO          */
+/* ========================================= */
 body.theme-frutiger {
-    /* Fond de base : un dégradé ciel */
-    --main-bg-start: #7cd5ef;
-    --main-bg-end: #0b789e;
-    --text-light: #111; /* Le texte principal devient foncé */
-    --text-accent: #2bb2d6;
-}
-
-/* 1. Transformation du Header */
-body.theme-frutiger .header {
-    background: rgba(140, 190, 255, 0.4);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    box-shadow: inset 0px 0px 10px 4px rgba(255, 255, 255, 0.5), 0px 0px 6px 3px rgba(0, 0, 0, 0.22);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.4);
-}
-body.theme-frutiger .nav-btn {
-    background-color: rgba(255, 255, 255, 0.6);
-    color: #111;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 1px 3px rgba(0,0,0,0.2);
-}
-
-/* 2. Transformation de la coquille (shell) de la fenêtre */
-body.theme-frutiger .box,
-body.theme-frutiger .card-project-grid {
-    background-color: rgba(140, 190, 255, 0.55); /* Verre bleuté */
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    box-shadow: inset 0px 0px 10px 4px rgba(255, 255, 255, 0.5), 0px 0px 6px 3px rgba(0, 0, 0, 0.22);
-    padding: 8px 8px 12px 8px; /* Bords de la fenêtre */
-    display: flex;
-    flex-direction: column;
-    gap: 0; /* On annule le gap du parent pour gérer le titre et le contenu */
-}
-
-/* 3. Affichage de la barre supérieure (Titlebar) */
-body.theme-frutiger .win7-topbar {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 2px 4px 6px 4px;
-}
-body.theme-frutiger .win7-title {
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    font-size: 0.9rem;
-    font-weight: 600;
-    color: #000;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
-}
-body.theme-frutiger .win7-title img {
-    height: 18px;
-}
-
-/* Boutons de contrôle (Min, Max, Close) */
-body.theme-frutiger .win7-controls {
-    display: flex;
-    gap: 2px;
-    background: transparent;
-    border-radius: 0 0 4px 4px;
-    overflow: hidden;
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4);
-    border-left: 1px solid rgba(0,0,0,0.2);
-    border-right: 1px solid rgba(0,0,0,0.2);
-    border-bottom: 1px solid rgba(0,0,0,0.2);
-    margin-top: -6px; /* Pour les coller au bord haut */
-}
-body.theme-frutiger .ctrl-btn {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width: 28px;
-    height: 20px;
-    color: white;
-    font-size: 14px;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(62, 78, 119, 0.8) 50%, rgba(62, 78, 119, 0.9) 100%);
-    box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.5);
-    border-right: 1px solid rgba(0,0,0,0.4);
-}
-body.theme-frutiger .ctrl-close {
-    width: 44px;
-    background: linear-gradient(to bottom, rgba(255,255,255,0.5) 0%, rgba(196, 15, 5, 0.8) 50%, rgba(196, 15, 5, 0.9) 100%);
-    border-right: none;
-    font-size: 18px;
-}
-
-/* 4. Le conteneur blanc du contenu */
-body.theme-frutiger .win7-inner {
-    display: flex; /* On restaure le display pour la section À propos */
-    flex-direction: column;
-    background-color: #ffffff;
-    box-shadow: 0px 0px 10px 2px rgba(255, 255, 255, 0.22), inset 0px 0px 6px 0px rgba(0, 0, 0, 0.22);
-    padding: 22px; /* On remet le padding d'origine ici */
-    border-radius: 0;
-    height: 100%;
-}
-/* Adaptation pour la grille (pour que l'image touche les bords blancs) */
-body.theme-frutiger .card-project-grid .win7-inner {
-    padding: 0;
-}
-body.theme-frutiger .card-project-grid .detail-project-grid {
-    padding: 16px;
-}
-body.theme-frutiger .image-project-grid {
-    border-radius: 0;
-    margin-bottom: 0;
-}
-
-/* Ajustements typographiques pour le fond blanc */
-body.theme-frutiger .box .para,
-body.theme-frutiger .desc-project-grid {
-    color: #4b5564;
-}
-body.theme-frutiger .title-project-grid {
-    text-shadow: none;
-    color: #111;
-}
-body.theme-frutiger #name-title h1 {
-    color: #111;
-    text-shadow: 0 4px 10px rgba(140, 190, 255, 0.5);
-}
-
-/* Les cellules Contact */
-body.theme-frutiger .cell1 {
-    background: linear-gradient(to bottom, #f9fcff 0%, #ddeaf8 50%, #cfdef0 100%);
-    color: #111;
-    border: 1px solid #9aa9ba;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 1px 0 rgba(255, 255, 255, 0.4);
-}
-body.theme-frutiger .cell1 a, body.theme-frutiger .cell1 i {
-    color: #111;
-}
-
-
-/* --------------------------------------------------- */
-/* 5. Transformation du Header en Barre des Tâches Win7 */
-/* --------------------------------------------------- */
-
-/* Ajout du fond d'écran global pour le thème Frutiger */
-body.theme-frutiger {
-    /* On écrase ton dégradé par défaut avec l'image + un très léger voile sombre */
     background: linear-gradient(to bottom, rgba(18, 28, 44, 0.08), rgba(18, 28, 44, 0.1)), url('img/bg_img.jpg') no-repeat center center fixed !important;
     background-size: cover !important;
 }
 
+/* Modifs globales Frutiger */
+body.theme-frutiger #name-title h1 { text-shadow: 0 4px 10px rgba(140, 190, 255, 0.5); }
+body.theme-frutiger .cell1 { background: linear-gradient(to bottom, #f9fcff 0%, #ddeaf8 50%, #cfdef0 100%); border: 1px solid #9aa9ba; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 1px 0 rgba(255, 255, 255, 0.4); }
+
+/* Header Frutiger */
+body.theme-frutiger .header { box-shadow: inset 0px 10px 20px 0px rgba(255, 255, 255, 0.38), 0px 0px 6px 2px rgba(0, 0, 0, 0.18); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border-top: 1px solid rgba(255, 255, 255, 0.4); }
+body.theme-frutiger .nav-btn { background-color: rgba(255, 255, 255, 0.6); color: #111; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.9), 0 1px 3px rgba(0,0,0,0.2); font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; background: linear-gradient(rgba(216, 231, 255, 0.56) 0%, rgba(152, 184, 248, 0.18) 49%, rgba(152, 192, 255, 0.39) 50%, rgba(88, 153, 255, 0.3) 100%); border: 1px solid rgba(83, 183, 255, 0.5); }
+body.theme-frutiger .nav-btn:hover { background: linear-gradient(rgba(244, 248, 255, 0.56) 0%, rgba(152, 184, 248, 0.18) 49%, rgba(168, 201, 255, 0.39) 50%, rgba(124, 174, 255, 0.3) 100%); border-color: rgba(24, 63, 90, 0.9); }
+body.theme-frutiger .theme-dropdown-menu { top: auto; bottom: calc(100% + 10px); background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px); border: 1px solid rgba(255, 255, 255, 0.8); box-shadow: 0 0 15px rgba(0, 0, 0, 0.2), inset 0 0 10px rgba(255, 255, 255, 0.5); }
+body.theme-frutiger .theme-option { color: #111; font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; }
+body.theme-frutiger .theme-option:hover { background: linear-gradient(rgba(216, 231, 255, 0.8) 0%, rgba(152, 192, 255, 0.5) 100%); border: 1px solid rgba(83, 183, 255, 0.6); color: #000; }
+
+/* PANELS (BEM) FRUTIGER */
+body.theme-frutiger .panel { padding: 8px 8px 8px 8px; gap: 0; }
+body.theme-frutiger .panel__topbar { display: flex; justify-content: space-between; align-items: center; padding: 2px 0px 8px 4px; }
+body.theme-frutiger .panel__content {
+    display: flex; 
+    flex-direction: column; 
+    background-color: #ffffff; 
+    box-shadow: inset 0px 0px 6px rgba(0, 0, 0, 0.22); 
+    padding: 22px;
+    height: 100%; 
+    position: relative;
+    border-bottom-left-radius: var(--rad-lg);
+    border-bottom-right-radius: var(--rad-lg);
+    overflow: hidden;
+}
+
+/* Spécifique aux cartes de la grille Frutiger */
+body.theme-frutiger .card-project-grid { padding: 8px 8px 12px 8px; gap: 0; border: var(--border-panel); backdrop-filter: var(--panel-backdrop); -webkit-backdrop-filter: var(--panel-backdrop); }
+body.theme-frutiger .card-project-grid .panel__content { padding: 0; }
+
+/* ========================================= */
+/* RESPONSIVE                                */
+/* ========================================= */
+@media (max-width: 1430px) { .container { max-width: 1300px; } }
+@media (max-width: 1330px) { .container { max-width: 1200px; } .grid-projects { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); } }
+@media (max-width: 1230px) { .container { max-width: 1100px; } .pdp { max-width: 300px; } }
+@media (max-width: 1130px) { .container { max-width: 1000px; } #name-title h1 { font-size: 5em; } .title-project-page { font-size: 3em; } }
+@media (max-width: 1030px) {
+    .container { max-width: 800px; }
+    #name-title h1 { font-size: 3em; }
+    .pdp { max-width: 200px; }
+    .col2 .para { font-size: 1.1125rem; }
+    .section-title { font-size: 3rem; }
+    .cell1 a { font-size: 0.9rem; }
+    .cell1 i { font-size: 1rem; }
+    .title-project-page { font-size: 2em; }
+    .cell2 { font-size: 0.8rem; }
+}
+@media (max-width: 768px) {
+    .header { gap: 15px; padding: 11px 22px; }
+    .header-btns { display: none; }
+    .container { max-width: 500px; }
+    .pdp { max-width: 200px; }
+    .name-title h1 { font-size: 2.5em; z-index: 10; }
+    .svg-up2 { transform: translate(-55%, -57%); }
+    .svg-down2 { bottom: -4%; right: -6.8%; }
+    .col2 .para { margin: 0.7em 0; font-size: 1rem; }
+    .desktop { display: none; }
+    .mobile { display: block; }
+    .section-title { font-size: 2.8em; padding: 8px 20px; }
+    .grid-projects { grid-template-columns: repeat(auto-fill, minmax(205px, 1fr)); gap: 20px; }
+    .image-project-grid { height: 190px; }
+    .desc-project { font-size: 1.05rem; }
+    .title-project-page { font-size: 1.5em; font-weight: 800; }
+    .cell2 { font-size: 0.5rem; }
+    .galerie-grid { gap: 10px; }
+    body.theme-frutiger .header { position: fixed !important; height: 52px !important; padding: 4px 10px !important; }
+}
+@media (max-width: 530px) {
+    .container { max-width: 300px; }
+    #name-title h1 { font-size: 1.75em; }
+    .col2 .para { font-size: 0.95rem; }
+    .contact .para { font-size: 1rem; }
+    .cell1 br { display: block; }
+}
+/* ========================================= */
+/* FIX : BARRE DES TÂCHES WINDOWS 7          */
+/* ========================================= */
 body.theme-frutiger .header {
-    /* Repositionnement et hauteur */
-    top: auto !important; 
+    top: auto !important;
     bottom: 0 !important;
-    padding: 2px 10px !important; /* Petit espace en haut et en bas */
-    height: 52px !important; /* Barre un peu plus haute */
-    
-    /* Style global de la barre */
-    background-color: rgba(140, 190, 255, 0.72) !important;
-    border-top: 1px solid rgba(255, 255, 255, 0.4) !important;
-    border-bottom: none !important;
-    box-shadow: inset 0px 10px 20px 0px rgba(255, 255, 255, 0.38), 0px 0px 6px 2px rgba(0, 0, 0, 0.18) !important;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-    z-index: 1000;
-    
-    /* Alignement : stretch permet d'étirer les enfants sur toute la hauteur */
-    display: flex !important;
-    justify-content: flex-start !important; 
-    align-items: stretch !important; 
+    height: 52px !important;
+    padding: 2px 10px !important;
+    justify-content: flex-start !important;
+    align-items: stretch !important;
     gap: 15px !important;
 }
 
-body.theme-frutiger .header-left {
-    flex: 0 0 auto !important; 
-    display: flex !important;
-    align-items: center !important;
-}
+body.theme-frutiger .header-left { flex: 0 0 auto !important; display: flex; align-items: center; }
+body.theme-frutiger .header-btns { flex: 1 1 auto !important; display: flex; align-items: stretch; gap: 2px; }
+body.theme-frutiger .header-right { flex: 0 0 auto !important; display: flex; align-items: center; gap: 12px; padding-left: 15px; border-left: 1px solid rgba(0, 0, 0, 0.1); }
+body.theme-frutiger main { padding-bottom: 80px; }
 
-body.theme-frutiger .header-btns {
-    flex: 1 1 auto !important;
-    display: flex !important;
-    justify-content: flex-start !important; 
-    align-items: stretch !important; /* Étire les boutons sur la hauteur totale de la div */
-    gap: 2px !important;
-}
-
-body.theme-frutiger .header-right {
-    flex: 0 0 auto !important;
-    display: flex !important;
-    align-items: center !important;
-    gap: 12px !important;
-    padding-left: 15px !important;
-    border-left: 1px solid rgba(0, 0, 0, 0.1);
-    box-shadow: -1px 0 0 rgba(255, 255, 255, 0.3);
-}
-
-body.theme-frutiger main {
-    padding-bottom: 80px; /* On laisse de la place pour scroll au-dessus de la barre */
-}
-
-/* --------------------------------------------------- */
-/* 5.1. Le Logo (nettoyé)                              */
-/* --------------------------------------------------- */
-body.theme-frutiger .header-left .logo {
-    height: 38px !important; /* Hauteur ajustée à la nouvelle barre */
-    width: auto !important;
-    border-radius: var(--rad5) !important; /* On garde ton arrondi de base */
-    border: none !important; /* Adieu la bordure blanche */
-    box-shadow: none !important;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3)) !important;
-    transition: transform 0.15s ease, filter 0.15s ease;
-}
-
-body.theme-frutiger .header-left .logo:hover {
-    filter: drop-shadow(0 0 8px rgba(255,255,255,0.8)) !important;
-}
-
-/* --------------------------------------------------- */
-/* 5.2. Les "Programmes" (Boutons de navigation)        */
-/* --------------------------------------------------- */
+/* Boutons de la barre des tâches */
 body.theme-frutiger .nav-btn {
-    display: inline-flex !important;
-    align-items: center !important;
-    justify-content: center !important;
-    height: 100% !important; /* Prend la totalité de la hauteur de la barre (- le padding) */
-    padding: 0 20px !important;
-    margin: 0 !important;
-    border-radius: 4px !important; 
-    
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif !important; 
-    font-size: 14px !important;
-    font-weight: 600 !important;
-    color: #111 !important;
-    
+    height: 100% !important;
+    border-radius: 4px !important;
+    font-family: "Segoe UI", Tahoma, sans-serif !important;
     background: linear-gradient(rgba(216, 231, 255, 0.56) 0%, rgba(152, 184, 248, 0.18) 49%, rgba(152, 192, 255, 0.39) 50%, rgba(88, 153, 255, 0.3) 100%) !important;
     border: 1px solid rgba(83, 183, 255, 0.5) !important;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5), 0 1px 0 rgba(0, 0, 0, 0.15) !important;
-    
-    transform: none !important;
-}
-
-body.theme-frutiger .nav-btn:hover {
-    background: linear-gradient(rgba(244, 248, 255, 0.56) 0%, rgba(152, 184, 248, 0.18) 49%, rgba(168, 201, 255, 0.39) 50%, rgba(124, 174, 255, 0.3) 100%) !important;
-    border-color: rgba(24, 63, 90, 0.9) !important;
-    box-shadow: inset 0 1px 0 rgba(224, 242, 255, 0.2), inset 0 0 0 1px rgba(104, 195, 255, 0.3), 0 0 0 1px rgba(64, 171, 245, 0.2) !important;
-}
-
-/* --------------------------------------------------- */
-/* 5.3. La zone de notification (Réseaux et Thème)     */
-/* --------------------------------------------------- */
-body.theme-frutiger .social-icon img {
-    height: 22px !important;
-    width: 22px !important;
-    padding: 0 !important;
-    background-color: transparent !important; 
-    border-radius: 2px !important;
-    filter: drop-shadow(0 1px 1px rgba(255,255,255,0.7)) !important;
-    border: none !important;
-    transition: all 0.2s ease;
-}
-
-body.theme-frutiger .social-icon:hover img {
-    background-color: rgba(255, 255, 255, 0.3) !important;
-    border-radius: 4px !important;
-    box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.6);
-}
-
-body.theme-frutiger #theme-switcher img {
-    padding: 2px !important;
-    background: rgba(255, 255, 255, 0.2) !important;
-    border: 1px solid rgba(255, 255, 255, 0.4) !important;
-    border-radius: 4px !important;
-}
-
-/* --------------------------------------------------- */
-/* 5.4. Responsive : Garder le header en bas sur mobile*/
-/* --------------------------------------------------- */
-@media (max-width: 768px) {
-    body.theme-frutiger .header {
-        position: fixed !important;
-        height: 52px !important;
-        padding: 4px 10px !important;
-    }
 }
