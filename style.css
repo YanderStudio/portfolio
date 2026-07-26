@@ -1,5 +1,11 @@
 @import url('https://fonts.googleapis.com/css2?family=Funnel+Display:wght@300..800&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
+@fontface {
+    font-family: 'Segoe Print';
+    src: url('fonts/segoepr.ttf') format('truetype');,
+    font-weight: 400;
+    font-style: normal;
+}
 
 /* ========================================= */
 /* 1. VARIABLES & THÈMES (DESIGN TOKENS)     */
@@ -23,6 +29,7 @@
     /* --- TYPOGRAPHIE & ESPACEMENTS --- */
     --font-title: 'Funnel Display', sans-serif;
     --font-text: 'Montserrat', sans-serif;
+    --rad-xsm: 2px;
     --rad-sm: 5px;
     --rad-md: 8px;
     --rad-lg: 11px;
@@ -37,12 +44,27 @@ body.theme-frutiger {
     --bg-panel-hover: rgba(152, 192, 255, 0.7);
     --bg-header: rgba(140, 190, 255, 0.72);
     
-    --text-main: #4b5564;
+    --text-main: hsl(243, 30%, 27%);
     --text-accent: #0b789e;
     
     --shadow-base: rgba(0, 0, 0, 0.22);
     --border-panel: 1px solid rgba(255, 255, 255, 0.4);
     --panel-backdrop: blur(4px);
+    
+    --font-text: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    --font-title: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+
+    --scrollbar-rail-bg: #f0f0f0;
+    --scrollbar-rail-shadow: none;
+    --scrollbar-rail-border: rgba(0, 0, 0, 0.1);
+    --scrollbar-btn-bg: linear-gradient(to bottom, #f5f9ff 0%, #e7f0fb 50%, #d8e4f2 100%);
+    --scrollbar-btn-bg-hover: linear-gradient(to bottom, #eef6ff 0%, #dcecfb 50%, #c8ddf0 100%);
+    --scrollbar-btn-bg-active: linear-gradient(to bottom, #d5e8fa 0%, #c2d8ef 50%, #aec7e0 100%);
+    --scrollbar-thumb-bg: linear-gradient(to right, #f0f0f0 0%, #cfd1d3 50%, #e4e5e7 100%);
+    --scrollbar-thumb-bg-hover: linear-gradient(to right, #edf0f4 0%, #b8bcc2 50%, #d6dbe0 100%);
+    --scrollbar-thumb-shadow: inset 1px 1px 0 rgba(255, 255, 255, 0.8);
+    --scrollbar-thumb-border: #969b9e;
+    --scrollbar-icon: #4f637a;
 }
 
 /* ========================================= */
@@ -71,6 +93,7 @@ img {
     display: block;
 }
 .none { display: none; }
+.note { display: none; }
 .container { max-width: 1300px; margin: 0 auto; }
 main { margin-top: 17vh; }
 
@@ -107,35 +130,95 @@ main { margin-top: 17vh; }
 .panel__topbar { display: none; }
 .panel__content { display: contents; } /* Rendu natif par défaut pour ne pas casser ta grid */
 
-/* Commandes type Windows 7 */
-.win7-title { display: flex; align-items: center; gap: 8px; font-size: 0.9rem; font-weight: 600; color: #000; text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8); }
-.win7-title img { height: 18px; }
-.win7-controls { 
-    display: flex; 
-    gap: 0px; 
-    background: transparent; 
-    border-radius: 0 0 4px 4px; 
-    overflow: hidden;
-    height: 100%;
-    margin-top: -20px;
-    box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.4); 
-    border-left: 1px solid rgba(0,0,0,0.2); 
-    border-right: 1px solid rgba(0,0,0,0.2); 
-    border-bottom: 1px solid rgba(0,0,0,0.2); 
-}
-.ctrl-btn { 
-    display: flex; 
-    justify-content: center; 
+/* ========================================= */
+/* COMMANDES TYPE WINDOWS 7 (Reproduction exacte Tailwind) */
+/* ========================================= */
+.win7-title {
+    display: flex;
     align-items: center;
-    width: 28px; 
-    height: 20px; 
-    color: white; 
-    font-size: 14px; 
-    background: linear-gradient(to bottom, rgba(255,255,255,0.4) 0%, rgba(62, 78, 119, 0.8) 50%, rgba(62, 78, 119, 0.9) 100%); 
-    box-shadow: inset 0 0 4px rgba(255, 255, 255, 0.5); 
-    border-right: 1px solid rgba(0,0,0,0.4); 
+    gap: 8px;
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #000;
+    text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
 }
-.ctrl-close { width: 44px; background: linear-gradient(to bottom, rgba(255,255,255,0.5) 0%, rgba(196, 15, 5, 0.8) 50%, rgba(196, 15, 5, 0.9) 100%); border-right: none; font-size: 18px; }
+.win7-title img { height: 18px; }
+
+/* Conteneur des boutons (Placé bord à bord en haut à droite) */
+.win7-controls {
+    display: flex;
+    gap: 0;
+    position: absolute;
+    top: 0;
+    right: 12px; /* Évite de toucher l'arrondi droit de la fenêtre */
+    background: transparent;
+    border-radius: 0 0 4px 4px;
+    overflow: hidden;
+    box-shadow: 0 1px 1px rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(0,0,0,0.4);
+    border-top: none;
+}
+
+/* Style de base des boutons (Layer 1) */
+.ctrl-btn {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 24px;
+    background-color: rgba(62, 78, 119, 0.8); /* bg-[#3E4E77]/80 */
+    box-shadow: inset 0 0 8px rgba(255, 255, 255, 0.3);
+    border: none;
+    border-right: 1px solid rgba(0, 0, 0, 0.4);
+    cursor: pointer;
+    transition: background-color 0.15s ease;
+}
+
+/* Reflet du haut (Layer 2) */
+.ctrl-btn::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 50%;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.05));
+    pointer-events: none;
+}
+
+/* Reflet du bas (Layer 4) */
+.ctrl-btn::after {
+    content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 10%;
+    background: linear-gradient(to top, rgba(255, 255, 255, 0.4), transparent);
+    pointer-events: none;
+}
+
+/* Les icônes (Layer 3) */
+.ctrl-btn i {
+    position: relative;
+    z-index: 1; /* Reste au-dessus des reflets */
+    color: white;
+    filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.5));
+}
+
+/* Ajustements spécifiques des icônes */
+.ctrl-min i { font-size: 18px; margin-top: 8px; }
+.ctrl-max i { font-size: 14px; }
+
+/* Effet Hover Min/Max */
+.ctrl-btn:hover { background-color: #7889b3; }
+
+/* Bouton Fermer spécifique */
+.ctrl-close {
+    width: 60px; /* Équivalent du w-15 Tailwind */
+    background-color: rgba(196, 15, 5, 0.8); /* bg-[#C40F05]/80 */
+    box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.4);
+    border-right: none;
+}
+.ctrl-close::before {
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.1));
+}
+.ctrl-close i {
+    font-size: 22px;
+    filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.5));
+}
+.ctrl-close:hover { background-color: #ee4e45; }
 
 /* ========================================= */
 /* HEADER & DROPDOWN                         */
@@ -247,6 +330,7 @@ main { margin-top: 17vh; }
 .title-project-grid { font-size: 1.5em; color: var(--text-main); display: inline-block; margin-bottom: 0.2em; text-shadow: 0 8px 8px var(--shadow-base); }
 .desc-project-grid { color: var(--text-main); margin: 0; font-size: 1.25rem; margin-bottom: 11px; font-family: var(--font-title); font-weight: 300; flex-grow: 1; }
 .date-project-grid { color: var(--text-accent); font-weight: bold; font-size: 0.7rem; text-align: end; }
+.cta { display: flex; justify-content: center; margin-top: 30px; }
 
 /* ========================================= */
 /* PAGE PROJET UNIQUE                        */
@@ -290,6 +374,7 @@ body.theme-frutiger {
 /* Modifs globales Frutiger */
 body.theme-frutiger #name-title h1 { text-shadow: 0 4px 10px rgba(140, 190, 255, 0.5); }
 body.theme-frutiger .cell1 { background: linear-gradient(to bottom, #f9fcff 0%, #ddeaf8 50%, #cfdef0 100%); border: 1px solid #9aa9ba; box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.95), 0 1px 0 rgba(255, 255, 255, 0.4); }
+body.theme-frutiger .pdp{ border-radius: 0; box-shadow: 0 8px 8px rgba(0, 0, 0, 0.22); }
 
 /* Header Frutiger */
 body.theme-frutiger .header { box-shadow: inset 0px 10px 20px 0px rgba(255, 255, 255, 0.38), 0px 0px 6px 2px rgba(0, 0, 0, 0.18); backdrop-filter: blur(5px); -webkit-backdrop-filter: blur(5px); border-top: 1px solid rgba(255, 255, 255, 0.4); }
@@ -310,8 +395,7 @@ body.theme-frutiger .panel__content {
     padding: 22px;
     height: 100%; 
     position: relative;
-    border-bottom-left-radius: var(--rad-lg);
-    border-bottom-right-radius: var(--rad-lg);
+    border-radius: var(--rad-xsm);
     overflow: hidden;
 }
 
@@ -364,6 +448,7 @@ body.theme-frutiger .card-project-grid .panel__content { padding: 0; }
     .contact .para { font-size: 1rem; }
     .cell1 br { display: block; }
 }
+
 /* ========================================= */
 /* FIX : BARRE DES TÂCHES WINDOWS 7          */
 /* ========================================= */
@@ -380,13 +465,101 @@ body.theme-frutiger .header {
 body.theme-frutiger .header-left { flex: 0 0 auto !important; display: flex; align-items: center; }
 body.theme-frutiger .header-btns { flex: 1 1 auto !important; display: flex; align-items: stretch; gap: 2px; }
 body.theme-frutiger .header-right { flex: 0 0 auto !important; display: flex; align-items: center; gap: 12px; padding-left: 15px; border-left: 1px solid rgba(0, 0, 0, 0.1); }
-body.theme-frutiger main { padding-bottom: 80px; }
+body.theme-frutiger main { margin-top: 10vh; }
 
-/* Boutons de la barre des tâches */
 body.theme-frutiger .nav-btn {
     height: 100% !important;
     border-radius: 4px !important;
     font-family: "Segoe UI", Tahoma, sans-serif !important;
     background: linear-gradient(rgba(216, 231, 255, 0.56) 0%, rgba(152, 184, 248, 0.18) 49%, rgba(152, 192, 255, 0.39) 50%, rgba(88, 153, 255, 0.3) 100%) !important;
     border: 1px solid rgba(83, 183, 255, 0.5) !important;
+}
+
+/* ========================================= */
+/* EXPLORATEUR DE FICHIERS & SCROLLBAR       */
+/* ========================================= */
+
+
+/* Éléments cachés par défaut */
+.hidden-default { display: none !important; }
+
+/* La Scrollbar en pur CSS */
+.explorer-scrollbar {
+    width: 18px;
+    flex-direction: column;
+    justify-content: space-between;
+    flex-shrink: 0;
+    background: var(--scrollbar-rail-bg);
+    box-shadow: var(--scrollbar-rail-shadow);
+    border-left: 1px solid var(--scrollbar-rail-border);
+    z-index: 100;
+}
+.border-left-none { border-left: none !important; border-right: 1px solid var(--scrollbar-rail-border); }
+
+.explorer-scroll-btn {
+    height: 17px; width: 100%; display: flex; align-items: center; justify-content: center;
+    background: var(--scrollbar-btn-bg); border: none; border-bottom: 1px solid var(--scrollbar-rail-border);
+    cursor: pointer; padding: 0;
+}
+.explorer-scroll-btn:hover { background: var(--scrollbar-btn-bg-hover); }
+.explorer-scroll-btn:active { background: var(--scrollbar-btn-bg-active); }
+.explorer-scrollbar .explorer-scroll-btn:last-child { border-bottom: 0; border-top: 1px solid var(--scrollbar-rail-border); }
+
+.explorer-scroll-track-container { flex: 1; position: relative; display: flex; padding: 1px 2px; }
+.explorer-scroll-track {
+    display: flex; align-items: center; justify-content: center; width: 100%; height: 100%;
+    border-radius: 2px; cursor: pointer; background: var(--scrollbar-thumb-bg);
+    box-shadow: var(--scrollbar-thumb-shadow); border: 1px solid var(--scrollbar-thumb-border);
+}
+.explorer-scroll-track:hover { background: var(--scrollbar-thumb-bg-hover); }
+.explorer-scroll-icon { font-size: 10px; color: var(--scrollbar-icon); }
+.explorer-scroll-grip { font-size: 14px; color: var(--scrollbar-icon); }
+
+/* Garde la structure Grid/Flex par défaut intacte */
+.panel-inner-content { display: contents; }
+
+/* --- ACTIVATION DU THÈME FRUTIGER --- */
+body.theme-frutiger .hidden-default { display: flex !important; }
+body.theme-frutiger span.hidden-default { display: inline-block !important; }
+/*body.theme-frutiger .motif-default {}*/
+body.theme-frutiger .name-default { display: none !important; }
+
+/* Refonte de la structure intérieure (padding à 0 pour coller la scrollbar) */
+body.theme-frutiger .p-0-frutiger { padding: 0 !important; gap: 0 !important; display: flex; flex-direction: row; align-items: stretch; }
+body.theme-frutiger .panel-inner-content { display: flex; flex-direction: row; gap: 4vw; flex: 1; padding: 22px; padding-bottom: 30px; background: #ffffff; }
+
+/* Section À Propos (Explorateur) */
+body.theme-frutiger .about-left { flex: 2 0 0px; padding: 20px; display: flex; flex-direction: column; align-items: baseline; background: #ffffff; }
+body.theme-frutiger .about-right { flex: 1; padding: 22px; background-color: #f3f9fb; border-left: 1px solid #d9e4ea; margin: 0; }
+body.theme-frutiger .file-wrapper { display: flex; flex-direction: column; align-items: center; border-radius: 4px; border: 1px solid transparent; cursor: pointer; transition: 0.15s; }
+body.theme-frutiger .file-wrapper:hover { background-color: rgba(204, 232, 255, 0.4); border-color: rgba(153, 209, 255, 0.6); }
+body.theme-frutiger .pdp-frutiger { max-width: 170px; border-radius: 2px; box-shadow: 2px 2px 6px rgba(0,0,0,0.3); border: 2px solid white; }
+body.theme-frutiger .frutiger-chat-box { display: flex; position: relative; align-items: flex-start; }
+body.theme-frutiger .note {
+    display: none;
+    position: absolute;
+    top: 0;
+    left: 105%;
+    z-index: 100;
+    width: 250px;
+    background-color: #fefdc9;
+    border-radius: var(--rad-lg);
+    border: 1px solid #000000;
+    font-family: "Segoe Print", sans-serif;
+    padding: 10px;
+    text-decoration: underline;
+    text-underline-offset: 5px;
+    text-decoration-color: #caca67; /* uh 🤡... */
+}
+body.theme-frutiger .file-name { margin-top: 8px; font-family: "Segoe UI", sans-serif; color: #000; font-size: 13px; }
+
+body.theme-frutiger #name-title-frutiger h1 { font-family: "Segoe UI", sans-serif; font-size: 2.2rem; color: var(--text-main); text-shadow: none; margin: 10px 0; }
+body.theme-frutiger hr.preview-divider { border: none; border-bottom: 1px solid #d9e4ea; margin-bottom: 15px; }
+
+/* Masquer les fausses scrollbars sur mobile */
+@media (max-width: 768px) {
+    body.theme-frutiger .p-0-frutiger { flex-direction: column; }
+    body.theme-frutiger .about-left { flex: auto; border-bottom: 1px solid #d9e4ea; }
+    body.theme-frutiger .about-right { border-left: none; }
+    .explorer-scrollbar { display: none !important; }
 }

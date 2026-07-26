@@ -24,7 +24,7 @@
         <div class="header-right">
             <div class="theme-dropdown-container">
                 <button id="theme-dropdown-btn" class="social-icon" title="Changer de thème" style="border: none; cursor: pointer; background: transparent; padding: 0;">
-                    <img src="img/karde_me_logo.jpg" alt="Thèmes" style="background-color: var(--bg-panel); border-radius: var(--rad-sm); padding: 12px; height: 22px; width: 22px;">
+                    <img alt="🎨" style="background-color: var(--bg-panel); border-radius: var(--rad-sm); padding: 12px; height: 22px; width: 22px;">
                 </button>
                 <div id="theme-dropdown-menu" class="theme-dropdown-menu">
                     <button class="theme-option" data-theme="default">💜 Défaut</button>
@@ -41,7 +41,6 @@
     </header>
 
     <main>
-        <!-- NOUVEAU COMPOSANT PANEL BEM ICI -->
         <section class="container panel">
             <div class="panel__topbar">
                 <div class="win7-title">
@@ -55,31 +54,44 @@
                 </div>
             </div>
 
-            <div class="panel__content">
-                <div class="col1">
-                    <div>
-                        <img src="img/Motif_x3.svg" alt="motif déco" class="svg-up1 svg">
-                        <img src="img/moi.jpg" alt="Photo de Nicolas Richard" class="pdp">
-                        <img src="img/Motif_x3.svg" alt="motif déco" class="svg-down1 svg">
+            <div class="panel__content p-0-frutiger">
+                <!-- Zone Gauche (Fichier) -->
+                <div class="col1 about-left">
+                    <div class="file-wrapper" id="file-wrapper">
+                        <img src="img/Motif_x3.svg" alt="motif déco" class="svg-up1 svg motif-default">
+                        <div class="frutiger-chat-box">
+                            <img src="img/moi.jpg" alt="Photo de Nicolas Richard" class="pdp pdp-frutiger">
+                            <div class="note" id="note-trigger">
+                                Note personnelle : J'avoue que j'aurais aimé ajouter plus d'images sur cette section, 
+                                faire comme un mur, mais j'avoue que je me recherche encore et je fuis souvent les photos. 
+                                Même si mon activité sur les réseaux sociaux pourrait laisser penser l'inverse, j'ai beaucoup de mal avec moi-même. 🩷
+                            </div>
+                        </div>
+                        <img src="img/Motif_x3.svg" alt="motif déco" class="svg-down1 svg motif-default">
+                        <span class="file-name hidden-default">moi.jpg</span>
                     </div>
-                    <div id="name-title">
+                    <div id="name-title" class="name-default">
                         <h1>Nicolas<br>RICHARD</h1>
                     </div>
                 </div>
                 
-                <div class="col2">
-                    <p class="para desktop">
-                        Étudiant en 2e année de BUT MMI, je me positionne à l'intersection du développement Front-End et du design centré utilisateur (UI/UX Design). Ma formation m'a permis de construire une solide double compétence : de la maîtrise de la Suite Adobe et de Figma pour la conception graphique, à la connaissance des langages HTML, CSS, PHP et SQL pour l'intégration web.
-                    </p>
-                    <p class="para desktop">
-                        Je suis passionné par l'idée de concevoir des interfaces intuitives et esthétiques qui offrent une expérience utilisateur optimisée.
-                    </p>
-                    <p class="para mobile">
-                        Étudiant en 2e année de BUT MMI, je me positionne à l'intersection de l'UI/UX Design et du développement Front-End. J'allie la maîtrise des outils de conception (Figma, Suite Adobe) aux langages HTML/CSS.
-                    </p>
-                    <p class="para mobile">
-                        Je suis passionné par l'idée de concevoir des interfaces intuitives et esthétiques qui offrent une expérience utilisateur optimisée.
-                    </p>
+                <!-- Fausse Scrollbar (Milieu) -->
+                <div class="explorer-scrollbar hidden-default">
+                    <button class="explorer-scroll-btn"><i class='bx bx-caret-up explorer-scroll-icon'></i></button>
+                    <div class="explorer-scroll-track-container"><div class="explorer-scroll-track"><i class='bx bx-menu explorer-scroll-grip'></i></div></div>
+                    <button class="explorer-scroll-btn"><i class='bx bx-caret-down explorer-scroll-icon'></i></button>
+                </div>
+
+                <!-- Zone Droite (Aperçu) -->
+                <div class="col2 about-right">
+                    <div id="name-title-frutiger" class="hidden-default">
+                        <h1>Nicolas RICHARD</h1>
+                        <hr class="preview-divider">
+                    </div>
+                    <p class="para desktop">Étudiant en 2e année de BUT MMI, je me positionne à l'intersection du développement Front-End et du design centré utilisateur (UI/UX Design). Ma formation m'a permis de construire une solide double compétence : de la maîtrise de la Suite Adobe et de Figma pour la conception graphique, à la connaissance des langages HTML, CSS, PHP et SQL pour l'intégration web.</p>
+                    <p class="para desktop">Je suis passionné par l'idée de concevoir des interfaces intuitives et esthétiques qui offrent une expérience utilisateur optimisée.</p>
+                    <p class="para mobile">Étudiant en 2e année de BUT MMI, je me positionne à l'intersection de l'UI/UX Design et du développement Front-End. J'allie la maîtrise des outils de conception (Figma, Suite Adobe) aux langages HTML/CSS.</p>
+                    <p class="para mobile">Je suis passionné par l'idée de concevoir des interfaces intuitives et esthétiques qui offrent une expérience utilisateur optimisée.</p>
                 </div>
             </div>
         </section>
@@ -93,9 +105,11 @@
         <section class="container">
             <h2 class="section-title">PROJETS PRINCIPAUX (web)</h2>
             <div id="grid-main-projects" class="grid-projects"></div>
+            <div class="cta">
+                <a href="projects.html" class="nav-btn">Tous mes projets</a>
+            </div>
         </section>
 
-        <!-- NOUVEAU COMPOSANT PANEL BEM ICI -->
         <section id="contact" class="container">
             <h2 class="section-title">CONTACT</h2>
             <div class="panel fix">
@@ -110,29 +124,42 @@
                         <div class="ctrl-btn ctrl-close"><i class='bx bx-x'></i></div>
                     </div>
                 </div>
-                <div class="panel__content">
-                    <div>
-                        <img src="img/Motif_x3.svg" alt="motif déco" class="svg svg-up2">
-                        <img src="img/Motif_x3.svg" alt="motif déco" class="svg svg-down2">
+                
+                <div class="panel__content p-0-frutiger">
+                    
+                    <!-- Fausse scrollbar à gauche -->
+                    <div class="explorer-scrollbar hidden-default border-left-none">
+                        <button class="explorer-scroll-btn"><i class='bx bx-caret-up explorer-scroll-icon'></i></button>
+                        <div class="explorer-scroll-track-container"><div class="explorer-scroll-track"><i class='bx bx-menu explorer-scroll-grip'></i></div></div>
+                        <button class="explorer-scroll-btn"><i class='bx bx-caret-down explorer-scroll-icon'></i></button>
                     </div>
-                    <div class="contact">
-                        <p class="para desktop">À la recherche d'un alternant ou d'une collaboration ? Contactez moi ! Découvrez-moi également sur mes réseaux sociaux !</p>
-                        <p class="para mobile">À la recherche d'un alternant ou d'une collaboration ? Contactez moi !</p>
-                        <div class="cells1">
-                            <a href="download/CV_RICHARD_Nicolas.pdf" download="CV_RICHARD_Nicolas.pdf" target="_blank" class="cell1">
-                                <i class='bx bxs-download'></i> CV (graphique)
-                            </a>
-                            <a href="mailto:richard.nicolas.a.o@gmail.com" target="_blank" class="cell1">
-                                <i class='bx bxs-download'></i> CV (pour ATS)<br>(me contacter)
-                            </a>
-                            <a href="&#x6D;&#x61;&#x69;&#x6C;&#x74;&#x6F;&#x3A;&#x72;&#x69;&#x63;&#x68;&#x61;&#x72;&#x64;&#x2E;&#x6E;&#x69;&#x63;&#x6F;&#x6C;&#x61;&#x73;&#x2E;&#x61;&#x2E;&#x6F;&#x40;&#x67;&#x6D;&#x61;&#x69;&#x6C;&#x2E;&#x63;&#x6F;&#x6D;" target="_blank" class="cell1">
-                                <i class='bx bxl-gmail'></i> richard.nicolas.a.o<br>@gmail.com
-                            </a>
-                            <a href="https://www.instagram.com/sir.yander/" target="_blank" class="cell1">
-                                <i class='bx bxl-instagram' ></i> sir.yander
-                            </a>
+
+                    <!-- Contenu encapsulé -->
+                    <div class="panel-inner-content">
+                        <div>
+                            <img src="img/Motif_x3.svg" alt="motif déco" class="svg svg-up2">
+                            <img src="img/Motif_x3.svg" alt="motif déco" class="svg svg-down2">
+                        </div>
+                        <div class="contact">
+                            <p class="para desktop">Intéressé(e) par un stage ou une collaboration ? Contactez moi ! Découvrez-moi également sur mes réseaux sociaux !</p>
+                            <p class="para mobile">Intéressé(e) par un stage ou une collaboration ? Contactez moi !</p>
+                            <div class="cells1">
+                                <a href="download/CV_RICHARD_Nicolas.pdf" download="CV_RICHARD_Nicolas.pdf" target="_blank" class="cell1">
+                                    <i class='bx bxs-download'></i> CV (graphique)
+                                </a>
+                                <a href="#" target="_blank" class="cell1 secure-mail" data-subject="Demande de CV">
+                                    <i class='bx bxs-download'></i> CV <br>(me contacter)
+                                </a>
+                                <a href="#" class="cell1 secure-mail">
+                                    <i class='bx bx-envelope'></i> <span class="mail-text">Chargement...</span>
+                                </a>
+                                <a href="https://www.instagram.com/sir.yander/" target="_blank" class="cell1">
+                                    <i class='bx bxl-instagram' ></i> sir.yander
+                                </a>
+                            </div>
                         </div>
                     </div>
+                    
                 </div>
             </div>
         </section>
@@ -140,7 +167,7 @@
 
     <footer class="footer">
         <p>&copy; 2026 Nicolas Richard. Tous droits réservés.</p>
-        <a href="&#x6D;&#x61;&#x69;&#x6C;&#x74;&#x6F;&#x3A;&#x72;&#x69;&#x63;&#x68;&#x61;&#x72;&#x64;&#x2E;&#x6E;&#x69;&#x63;&#x6F;&#x6C;&#x61;&#x73;&#x2E;&#x61;&#x2E;&#x6F;&#x40;&#x67;&#x6D;&#x61;&#x69;&#x6C;&#x2E;&#x63;&#x6F;&#x6D;" target="_blank"><p>richard.nicolas.a.o@gmail.com</p></a>
+        <a href="#" class="secure-mail">Me contacter par E-mail</a>
     </footer>
 
     <script src="script.js" defer></script>
