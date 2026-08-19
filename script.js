@@ -204,64 +204,70 @@ const projectsData = {
         exeName: "Prés_du_Hem.exe",
         date: "13/01/2026",
         isMain: true,
-        tags: ["Tag 1", "Tag 2"],
+        tags: ["Communication", "Illustrator"],
         shortDesc: "Projet visant à valoriser un lieu culturel important d’une région française.",
         fullDesc: "Élaboration d'une stratégie de valorisation touristique et culturelle. Conception d'affiches et de supports publicitaires pour dynamiser l'image du site.",
-        mainImage: "img/placeholder.jpg",
-        gallery: ["img/placeholder.jpg"]
+        mainImage: "img/pres_du_hem/Logo.png",
+        gallery: [
+            "img/pres_du_hem/DA.png",
+            "img/pres_du_hem/Logos.png",
+        ]
     },
     "light-it": {
         title: "Projet international Light it",
         exeName: "Projet_international.exe",
         date: "09/03/2026 - 13/03/2026",
         isMain: true,
-        tags: ["Tag 1", "Tag 2"],
+        tags: ["Illustrator", "Figma"],
         shortDesc: "Création complète d'un site web nommé Light it dédié à la collection de briquets.",
         fullDesc: "Projet collaboratif international. Conception UI/UX et développement front-end d'une plateforme web permettant aux passionnés de répertorier et partager leur collection de briquets.",
-        mainImage: "img/placeholder.jpg",
-        gallery: ["img/placeholder.jpg"]
+        mainImage: "img/light_it/accueil.jpg",
+        gallery: [
+            "img/light_it/accueil.jpg",
+            "img/light_it/menus.jpg",
+        ]
     },
     "david-lynch": {
         title: "Site Web David Lynch",
         exeName: "David_Lynch.exe",
         date: "20/03/2026",
         isMain: true,
-        tags: ["Tag 1", "Tag 2"],
+        tags: ["Communication", "Photoshop", "html", "css", "js"],
         shortDesc: "Création du site Web immersif dédié à l'œuvre de David Lynch.",
         fullDesc: "Expérience web interactive et sombre rendant hommage à la cinématographie de David Lynch. Utilisation d'animations CSS/JS pour recréer l'atmosphère de ses films.",
-        mainImage: "img/placeholder.jpg",
-        gallery: ["img/placeholder.jpg"]
+        mainImage: "img/david_lynch/index.png",
+        gallery: [
+            "img/david_lynch/index.png",
+            "img/david_lynch/rideau.png",
+            "img/david_lynch/héritage.png",
+            "img/david_lynch/oeuvres.png",
+            "img/david_lynch/parcours.png",
+            "img/david_lynch/sources1.png",
+            "img/david_lynch/sources2.png",
+        ]
     },
     "goty": {
         title: "Site Web historique des GOTY",
         exeName: "GOTY.exe",
         date: "01/04/2026",
         isMain: true,
-        tags: ["Tag 1", "Tag 2"],
+        tags: ["Scss", "html", "css", "js", "GSAP"],
         shortDesc: "Création d'un site Web immersif retraçant les éditions précédentes des GOTY.",
         fullDesc: "Développement d'une vitrine interactive retraçant les jeux récompensés aux Game of The Year. Mise en avant visuelle, transitions fluides et fiches détaillées par jeu.",
-        mainImage: "img/placeholder.jpg",
-        gallery: ["img/placeholder.jpg"]
+        mainImage: "img/GOTY/TGA_GOTY.jpg",
+        gallery: [
+            "img/GOTY/TGA_GOTY.jpg",
+            "img/GOTY/Projet_GOTY.jpg",
+        ]
     },
     "burial-vault": {
         title: "Jeux vidéo Burial Vault",
         exeName: "Burial_Vault.exe",
         date: "19/02/2026 - 09/04/2026",
         isMain: true,
-        tags: ["Tag 1", "Tag 2"],
+        tags: ["Android Studio", "Kotlin", "Design", "Pixel art"],
         shortDesc: "Création d'un jeu vidéo 2D en pixel art type 'die and retry' à travers des donjons.",
         fullDesc: "Conception globale d'un jeu 2D : level design, création des assets en pixel art et programmation des mécaniques de jeu (déplacements, collisions, ennemis).",
-        mainImage: "img/placeholder.jpg",
-        gallery: ["img/placeholder.jpg"]
-    },
-    "4l-trophy": {
-        title: "Communication 4L Trophy",
-        exeName: "4L_Trophy.exe",
-        date: "23/05/2026",
-        isMain: true,
-        tags: ["Tag 1", "Tag 2"],
-        shortDesc: "Création d'éléments de communication pour une association participant au 4L Trophy.",
-        fullDesc: "Conception de supports de sponsoring, d'affiches événementielles et d'encarts pour les réseaux sociaux afin d'aider l'association à financer son aventure dans le désert.",
         mainImage: "img/placeholder.jpg",
         gallery: ["img/placeholder.jpg"]
     },
