@@ -221,10 +221,10 @@ const projectsData = {
         tags: ["Illustrator", "Figma"],
         shortDesc: "Création complète d'un site web nommé Light it dédié à la collection de briquets.",
         fullDesc: "Projet collaboratif international. Conception UI/UX et développement front-end d'une plateforme web permettant aux passionnés de répertorier et partager leur collection de briquets.",
-        mainImage: "img/light_it/accueil.jpg",
+        mainImage: "img/light_it/accueil.png",
         gallery: [
-            "img/light_it/accueil.jpg",
-            "img/light_it/menus.jpg",
+            "img/light_it/accueil.png",
+            "img/light_it/menus.png",
         ]
     },
     "david-lynch": {
@@ -254,10 +254,10 @@ const projectsData = {
         tags: ["Scss", "html", "css", "js", "GSAP"],
         shortDesc: "Création d'un site Web immersif retraçant les éditions précédentes des GOTY.",
         fullDesc: "Développement d'une vitrine interactive retraçant les jeux récompensés aux Game of The Year. Mise en avant visuelle, transitions fluides et fiches détaillées par jeu.",
-        mainImage: "img/GOTY/TGA_GOTY.jpg",
+        mainImage: "img/GOTY/TGA_GOTY.png",
         gallery: [
-            "img/GOTY/TGA_GOTY.jpg",
-            "img/GOTY/Projet_GOTY.jpg",
+            "img/GOTY/TGA_GOTY.png",
+            "img/GOTY/Projet_GOTY.png",
         ]
     },
     "burial-vault": {
