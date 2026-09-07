@@ -281,7 +281,7 @@ const projectsData = {
         exeName: "Eliaut_Elevage.exe",
         date: "En cours",
         isMain: true,
-        tags: ["Web", "En cours", "Wordpress"],
+        tags: ["Web", "Figma", "Design", "Wordpress", "Lenis js", "Cloudflare"],
         shortDesc: "Création du site Web de l'entreprise Eliaut Elevage basée à Méteren dans le Nord.",
         fullDesc: "Conception et développement complet du site web vitrine pour l'entreprise Eliaut Elevage. Design sur-mesure, optimisation SEO locale et structuration de l'offre commerciale.",
         mainImage: "img/Eliaut_Elevage/Logo_Eliaut_web.png",
