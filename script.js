@@ -268,12 +268,12 @@ const projectsData = {
         tags: ["Android Studio", "Kotlin", "Design", "Pixel art"],
         shortDesc: "Création d'un jeu vidéo 2D en pixel art type 'die and retry' à travers des donjons.",
         fullDesc: "Conception globale d'un jeu 2D : level design, création des assets en pixel art et programmation des mécaniques de jeu (déplacements, collisions, ennemis).",
-        mainImage: "img/Burial_Vault_Cover.png",
+        mainImage: "img/burialvault/Burial_Vault_Cover.png",
         gallery: [
-            "img/Burial_Vault_Cover.png",
-            "img/Burial_Vault_Gameplay.png",
-            "img/idk.png",
-            "img/Screenshot_Burial_Vault_Home.png",
+            "img/burialvault/Burial_Vault_Cover.png",
+            "img/burialvault/Burial_Vault_Gameplay.png",
+            "img/burialvault/idk.png",
+            "img/burialvault/Screenshot_Burial_Vault_Home.png",
         ]
     },
     "eliaut": {
