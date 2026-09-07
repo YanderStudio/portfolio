@@ -271,7 +271,7 @@ const projectsData = {
         mainImage: "img/burialvault/Burial_Vault_Cover.png",
         gallery: [
             "img/burialvault/Burial_Vault_Cover.png",
-            "img/burialvault/Burial_Vault_Gameplay_2.png",
+            "img/burialvault/Burial_Vault_Gameplay_2.gif",
             "img/burialvault/idk.png",
             "img/burialvault/Screenshot_Burial_Vault_Home.jpg",
         ]
